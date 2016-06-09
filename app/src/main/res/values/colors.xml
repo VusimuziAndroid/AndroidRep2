@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The resources file for holding variables for primary color, primary color dark and accent color -->
+<resources>
+    <color name="colorPrimary">#1A1F35</color>
+    <color name="colorPrimaryDark">#1A1F35</color>
+    <color name="colorAccent">#FFF</color>
+</resources>
