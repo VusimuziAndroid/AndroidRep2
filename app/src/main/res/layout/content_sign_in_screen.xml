@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_bg_color">
+
+    <TextView
+        android:id="@+id/tvSteller"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_marginTopPercent="20%"
+        app:layout_marginLeftPercent="30%"
+        android:text="STELLER"
+        android:textColor="#FFFFFF"
+        android:textStyle="normal"
+        android:textSize="35sp"
+        ></TextView>
+
+    <TextView
+        android:id="@+id/tvStellerLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_marginTopPercent="2%"
+        app:layout_marginLeftPercent="15%"
+        android:text="Everyone has a story to tell"
+        android:textColor="#FFFFFF"
+        android:textStyle="normal"
+        android:textSize="20sp"
+        android:layout_below="@+id/tvSteller"></TextView>
+
+    <LinearLayout android:id="@+id/linearLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_marginTopPercent="10%"
+        app:layout_marginLeftPercent="14%"
+        app:layout_widthPercent="64%"
+        android:layout_below="@+id/tvStellerLogo"
+        android:orientation="vertical">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:textColor="#FFFFFF"
+            android:hint="Username"
+            android:id="@+id/etUsername"
+            android:backgroundTint="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/etUsername"
+            android:textColor="#FFFFFF"
+            android:hint="Password"
+            android:inputType="textPassword"
+
+            android:id="@+id/etPassword"
+            android:backgroundTint="#FFFFFF"
+            android:textColorHighlight="#FFFFFF"
+            android:textColorHint="#FFFFFF"
+            android:textColorLink="#FFFFFF" />
+
+
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearLayout2"
+        app:layout_widthPercent="70%"
+        app:layout_marginTopPercent="10%"
+        app:layout_marginLeftPercent="14%"
+        android:id="@+id/linearLayout3"
+        android:orientation="vertical">
+
+        <Button android:id="@+id/bLoginSteler"
+            android:layout_below="@+id/bLoginInstagram"
+            android:layout_width="247dp"
+            android:layout_height="wrap_content"
+
+            app:layout_heightPercent="45%"
+            app:layout_widthPercent="70%"
+            app:layout_marginTopPercent="65%"
+
+            android:text="      STELLER SIGN IN   >"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/gradient_buttons"
+            android:onClick="onClickRedirect"></Button>
+
+    </LinearLayout>
+
+
+</android.support.percent.PercentRelativeLayout>
