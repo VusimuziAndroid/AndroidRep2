@@ -12,18 +12,17 @@
         android:icon="@drawable/ic_menu_white_48dp"
         >
         <!-- The sub menu with menu items -->
-        <menu>
+        <menu
+           android:background="@drawable/gradient_bg_color" >
             <!-- The first menu item on the menu list -->
-            <item android:id="@+id/notifications" android:title="NOTIFICATIONS" android:orderInCategory="100"
-                app:showAsAction="always"
-                android:icon="@drawable/ic_notifications_white_48dp"></item>
-            <item android:id="@+id/profile" android:title="PROFILE" android:orderInCategory="100"
-                app:showAsAction="always"></item>
-            <item android:id="@+id/drafts" android:title="DRAFTS" android:orderInCategory="100"
-                app:showAsAction="always"
-                android:icon="@drawable/ic_person_white_48dp"></item>
+            <item android:id="@+id/home" android:title="HOME" android:orderInCategory="100"
+                app:showAsAction="always"   android:icon="@drawable/ic_home_black_48dp"></item>
+            <item android:id="@+id/signIn" android:title="SIGN IN " android:orderInCategory="100"
+                app:showAsAction="always" android:icon="@drawable/ic_share_black_48dp"></item>
+            <item android:id="@+id/signUp" android:title="SIGN UP " android:orderInCategory="100"
+                app:showAsAction="always" android:icon="@drawable/ic_add_black_48dp"></item>
 
-            <item android:id="@+id/item2" android:title="Next Page"></item>
-        </menu>
+
+    </menu>
     </item>
-</menu>
+    </menu>

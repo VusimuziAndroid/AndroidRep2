@@ -8,11 +8,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuInflater;
+import android.view.SubMenu;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.content.Intent;
+
 //Created by Vusi Ngwenya
 //The Activity for welcoming the new person to the app
 
@@ -88,6 +90,11 @@ public class WelcomeActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
 
+      /*  SubMenu s1 =menu.addSubMenu("Home");
+        s1.setIcon(R.drawable.home);
+
+        SubMenu s2 = menu.addSubMenu("Sign In");
+        s2.setIcon(R.drawable.ic_share_white_48dp);*/
 
         MenuInflater inflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_welcome, menu);
@@ -110,14 +117,31 @@ public class WelcomeActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        item.setIcon(R.drawable.menu2);
+       // item.setIcon(R.drawable.menu2);
        //The if statement for choosing the item on the menu list
-        if (id == R.id.item2) {
+       /* if (id == R.id.signIn) {
 
-            Intent intent = new Intent(WelcomeActivity.this,End.class);
+            Intent intent = new Intent(WelcomeActivity.this,SignIn.class);
             startActivity(intent);
             return true;
+        }*/
+        switch(id){
+            case R.id.home:
+                Intent home = new Intent(WelcomeActivity.this,Home.class);
+                startActivity(home);
+            case R.id.signIn:
+                Intent intent = new Intent(WelcomeActivity.this,SignInScreen.class);
+                startActivity(intent);
+            case R.id.signUp:
+
+                Intent intent2 = new Intent(WelcomeActivity.this,SignInScreen.class);
+                startActivity(intent2);
+
+               /* Intent signUp = new Intent(WelcomeActivity.this,SignUpScreen.class);
+                startActivity(signUp);*/
+
         }
+
 
         return super.onOptionsItemSelected(item);
     }

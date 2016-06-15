@@ -3,5 +3,14 @@
     <string name="app_name"></string>
     <string name="action_settings">Next Page</string>
     <string name="title_activity_hyperlapse"></string>
-    <string name="title_activity_end">End</string>
+    <string name="title_activity_end">             End                    </string>
+    <string name="title_activity_sign_in">               Sign In             </string>
+    <string name="title_activity_sign_in_screen">           Sign In Screen          </string>
+    <string name="title_activity_sign_up_screen">           Sign Up Screen            </string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_activity_discover">Discover</string>
+    <string name="title_activity_notifications">Notifications</string>
+    <string name="title_activity_profile">Profile</string>
+    <string name="title_activity_drafts">Drafts</string>
+    <string name="title_activity_new_story">NewStory</string>
 </resources>
