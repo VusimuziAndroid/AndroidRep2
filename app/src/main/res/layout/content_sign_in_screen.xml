@@ -44,7 +44,7 @@
 
             android:textColor="#FFFFFF"
             android:hint="Username"
-            android:id="@+id/etUsername"
+            android:id="@+id/etUsername2"
             android:backgroundTint="#FFFFFF"
             android:textColorHighlight="#FFFFFF"
             android:textColorHint="#FFFFFF"
@@ -53,12 +53,12 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/etUsername"
+            android:layout_below="@+id/etUsername2"
             android:textColor="#FFFFFF"
             android:hint="Password"
             android:inputType="textPassword"
 
-            android:id="@+id/etPassword"
+            android:id="@+id/etPassword2"
             android:backgroundTint="#FFFFFF"
             android:textColorHighlight="#FFFFFF"
             android:textColorHint="#FFFFFF"
@@ -74,13 +74,13 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout2"
         app:layout_widthPercent="70%"
-        app:layout_marginTopPercent="10%"
+        app:layout_marginTopPercent="5%"
         app:layout_marginLeftPercent="14%"
         android:id="@+id/linearLayout3"
         android:orientation="vertical">
 
         <Button android:id="@+id/bLoginSteler"
-            android:layout_below="@+id/bLoginInstagram"
+
             android:layout_width="247dp"
             android:layout_height="wrap_content"
 
@@ -88,12 +88,13 @@
             app:layout_widthPercent="70%"
             app:layout_marginTopPercent="65%"
 
-            android:text="      STELLER SIGN IN   >"
+            android:text="   SIGN IN   >"
             android:textStyle="bold"
             android:textSize="18sp"
             android:textColor="#FFFFFF"
             android:background="@drawable/gradient_buttons"
-            android:onClick="onClickRedirect"></Button>
+            android:onClick="onClickLogin"
+            android:nestedScrollingEnabled="false"></Button>
 
     </LinearLayout>
 

@@ -13,21 +13,25 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.AdapterView;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Home extends AppCompatActivity {
-
+    //Declaring the variables for the UI controls
     ListView list;
-    TabHost tabhost; //Declaring the variable for the Tab Host to be display on the welcome activity layout
-
-
+    private List<PersonProfile> profile = new ArrayList<PersonProfile>();
+    TabHost tabhost;
+    TextView tvStory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +48,7 @@ public class Home extends AppCompatActivity {
             }
         });
 
-
+        tvStory = (TextView) findViewById(R.id.tvStory);
         /*list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView <?> parent,View view,
@@ -70,6 +74,59 @@ public class Home extends AppCompatActivity {
 
     }
 
+    //The method for populating the list view
+    public void populateProfileList(){
+
+
+
+        profile.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
+        profile.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
+        profile.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
+        profile.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
+      /*  profile.add(new PersonProfile("John", "Smith", R.drawable.extreme));
+        profile.add(new PersonProfile("Thembi","Nkosi",R.drawable.places));*/
+        //    profile.add(new PersonProfile("Tebego","Gumede",R.drawable.ic_pic1));
+
+    }
+
+    //The method for populating the Array Adapter
+    public void populateProfileAdapter(){
+        ArrayAdapter<PersonProfile> adapter = new MyListAdapter();
+        list = (ListView) findViewById(R.id.list);
+        list.setAdapter(adapter);
+
+    }
+
+    //The class for the Array Adapter
+    private class MyListAdapter extends ArrayAdapter<PersonProfile>{
+        public MyListAdapter(){
+            super(Home.this, R.layout.list_single, profile);
+        }
+
+        @Override
+        public View getView(int position,View convertView,ViewGroup parent){
+            View itemView = convertView;
+
+            if(itemView == null){
+                itemView = getLayoutInflater().inflate(R.layout.list_single,parent,false);
+
+            }
+
+
+            PersonProfile persons = profile.get(position);
+
+            ImageView imageView = (ImageView) itemView.findViewById(R.id.imgIcons);
+            imageView.setImageResource(persons.getPicture());
+
+        /*    TextView tvName = (TextView)findViewById(R.id.tvName);
+            tvName.setText(" "+persons.getName());
+
+            TextView tvSurname = (TextView) findViewById(R.id.tvSurname);
+            tvSurname.setText(" "+persons.getSurname());*/
+
+            return itemView;
+        }
+    }
 
     //The method for displaying the Tab Host on the Welcome Screen
     public void displayTab(){
@@ -118,26 +175,6 @@ public class Home extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_home, menu);
 
 
-
-        /*MenuItem menuItem;
-
-        menuItem.setIcon(R.drawable.ic_show_chart_white_48dp);
-        menuItem.setIcon(R.drawable.ic_share_white_48dp);
-        menuItem.setIcon(R.drawable.ic_notifications_white_48dp);
-        menuItem.setIcon(R.drawable.ic_person_white_48dp);
-        menuItem.setIcon(R.drawable.ic_drafts_white_48dp);
-        menuItem.setIcon(R.drawable.ic_add_white_48dp);*/
-
-
-
-       /* menu.addSubMenu("HOME");
-        menu.addSubMenu("DISCOVER");
-        menu.addSubMenu("NOTIFICATIONS");
-        menu.addSubMenu("PROFILE");
-        menu.addSubMenu("DRAFTS");
-        menu.addSubMenu("NEW STORY");*/
-
-
         return true;
     }
 
@@ -167,11 +204,14 @@ public class Home extends AppCompatActivity {
          /*   case R.id.notification:
                 Intent notificationIntent = new Intent(Home.this,Notifications.class);
                 startActivity(notificationIntent);*/
-            case R.id.profile2:
-               /* Intent profileIntent = new Intent(Home.this,Profile.class);
-                startActivity(profileIntent);*/
+          /*  case R.id.profile2:
+
                 Intent profileIntent = new Intent(Home.this,Discover.class);
-                startActivity(profileIntent);
+                startActivity(profileIntent);*/
+
+
+
+
 
                 case R.id.newstory:
 
@@ -217,6 +257,8 @@ public class Home extends AppCompatActivity {
 
                                     Toast.makeText(getApplicationContext(), "New story shared", Toast.LENGTH_SHORT).show();
 
+                                    tvStory.setText(etNewStory.getText().toString());
+
                                 }
                             });
 
@@ -226,6 +268,8 @@ public class Home extends AppCompatActivity {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
                                             Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                                            Intent home = new Intent(Home.this,Home.class);
+                                            startActivity(home);
                                         }
                                     });
 

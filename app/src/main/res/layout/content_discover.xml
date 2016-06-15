@@ -17,6 +17,7 @@
     <LinearLayout android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="horizontal"
+        android:id="@+id/linearLayout5"
         android:paddingLeft="0dp"
         android:background="#FFFFFF"
         app:layout_marginTopPercent="10%"
@@ -68,6 +69,13 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical"/>
 
+                        <TextView android:id="@+id/tvStory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_widthPercent="50%"
+                            app:layout_heightPercent="50%"></TextView>
+
+
 
                     </LinearLayout>
 
@@ -88,9 +96,41 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <ListView  android:id="@+id/lsDiscover"
+                         <!--   <ListView  android:id="@+id/lsDiscover"
                                 android:layout_width="wrap_content"
-                                android:layout_height='wrap_content'></ListView>
+                                android:layout_height='wrap_content'></ListView> -->
+
+                            <TextView android:id="@+id/tvfAuthor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_widthPercent="50%"
+                                app:layout_heightPercent="50%"
+                                android:text="John Smith"
+                                ></TextView>
+
+                            <TextView android:id="@+id/tvsAuthor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_widthPercent="50%"
+                                app:layout_heightPercent="50%"
+                                android:text="Peter Johnson"
+                                ></TextView>
+
+                            <TextView android:id="@+id/tvthAuthor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_widthPercent="50%"
+                                app:layout_heightPercent="50%"
+                                android:text="Jabu Rhadebe"
+                                ></TextView>
+
+                            <TextView android:id="@+id/tvfrthAuthor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                app:layout_widthPercent="50%"
+                                app:layout_heightPercent="50%"
+                                android:text="John Mkhize"
+                                ></TextView>
 
                            <!-- <ImageButton
                                 android:layout_width="wrap_content"
@@ -158,8 +198,66 @@
 
                     </LinearLayout>
                 </FrameLayout>
+                <LinearLayout android:id="@+id/linearLayout4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tabcontent"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_widthPercent="30%"
+                        app:layout_heightPercent="20%"
+                        android:id="@+id/imgFeatured"
+                        android:background="@drawable/ic_home_black_48dp"
+                        app:layout_marginTopPercent="50%"
+                        app:layout_marginLeftPercent="50%"
+                        app:layout_marginStartPercent="0%"
+                        />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_widthPercent="20%"
+                        app:layout_heightPercent="20%"
+                        android:id="@+id/imgStellerVerse"
+                        android:background="@drawable/ic_add_black_48dp"
+                        app:layout_marginTopPercent="50%"
+                        app:layout_marginLeftPercent="50%"
+                        app:layout_marginStartPercent="0%"
+                        />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_heightPercent="10%"
+                        app:layout_widthPercent="20%"
+                        android:id="@+id/imgBonAppetite"
+                        android:background="@drawable/ic_show_chart_black_48dp"
+                        app:layout_marginTopPercent="40%"
+                        app:layout_marginLeftPercent="50%"
+                        app:layout_marginStartPercent="0%"
+                        />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_heightPercent="20%"
+                        app:layout_widthPercent="20%"
+                        android:id="@+id/imgOutdoors"
+                        android:background="@drawable/ic_person_black_48dp"
+                        app:layout_marginTopPercent="40%"
+                        app:layout_marginLeftPercent="50%"
+                        app:layout_marginStartPercent="0%"/>
+
+
+                </LinearLayout>
             </LinearLayout>
         </TabHost>
     </LinearLayout>
 
+
 </RelativeLayout>
+
+

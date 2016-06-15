@@ -7,6 +7,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -22,25 +25,20 @@ import android.widget.Toast;
 
 
 public class SignUpScreen extends AppCompatActivity {
-
-
-    SharedPreferences pref;// Declaring the values for the shared preferences
-    private Editor editor; // declaring the values for setting the edit mode
+    //Declaring the variables for holding UI Controls
+    SharedPreferences pref;
+    private Editor editor;
     Context context=null;
-
-    Button bLoginSteller;// Declaring the button that redirects to the login screen
-    Button bSignUp; // Declaring the button that redirects to the sign up screen
-    Datasource datasource;//declaring the SQLiteDatabase Helper object
-    EditText etUsername; // declaring the edit text the username
-    EditText etPassword; // declaring the edit text for the password
-    EditText etConfirmPassword; //declaring the edit text for the confirm password
-    EditText etName;  //declaring the edit text variable for the name
-    EditText etSurname; //declaring the edit text variable for the surname
-    User user;//declaring the User object
-    SQLiteDatabase db;//declaring the SQLite Database variable
-
-
-
+    Button bLoginSteller;
+    Button bSignUp;
+    Datasource datasource;
+    EditText etUsername;
+    EditText etPassword;
+    EditText etConfirmPassword;
+    EditText etName;
+    EditText etSurname;
+    User user;
+    SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,142 +56,107 @@ public class SignUpScreen extends AppCompatActivity {
             }
         });
 
-        etName = (EditText) findViewById(R.id.etName); // binding the edit text for the name to the edit text on the xml layout
-        etSurname = (EditText) findViewById(R.id.etSurname); //binding the edit text for the surname to the edit text on the xml layout
-        etUsername = (EditText) findViewById(R.id.etUsername); // binding the edit text for the username to the edit text on the xml layout
-        etPassword = (EditText) findViewById(R.id.etPassword); // binding the edit text for the password to the edit text on the xml layout
-        etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword); // binding the edit text for the confirm password to the edit text for the confirm password
+        etName = (EditText) findViewById(R.id.etName);
+        etSurname = (EditText) findViewById(R.id.etSurname);
+        etUsername = (EditText) findViewById(R.id.etUsername);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
 
-
+        datasource = new Datasource(this);
 
     }
 
-
-
-   // pref = getApplicationContext()
-
-
-//}
-
-    // The onClick method for sign up screen
 public void onClick(View view){
-
-
-    //The switch statement for handling the events
     switch(view.getId()){
-
         case R.id.bSignUp:
-            signUp();
 
-
-      /*  case R.id.bLogin:
-
-
-            Intent loginIntent = new Intent(SignUpScreen.this,SignInScreen.class);
-            startActivity(loginIntent);*/
-
+            Registration registration = new Registration();
+            registration.signUp();
     }
 }
+    //The private class for handling registration process
+   private class Registration {
 
-    // The sign up method for registering the new user to the sqlite database
-    public void signUp(){
+       public void signUp(){
+           //Checking if the EditText for the edit texts is empty
+           if(etName.getText().toString().equals("")){
+               etName.setError("Please provide your Name");
+           }
+           else if(etSurname.getText().toString().equals("")){
+               etSurname.setError("Please provide your Surname");
+           }
+           else if(etUsername.getText().toString().equals("")){
 
+               etUsername.setError("Please provide your Username");
+           }
+           else if(etPassword.getText().toString().equals("")){
+               etPassword.setError("Please provide your Password");
+           }
+           else if(etConfirmPassword.getText().toString().equals("")){
+               etConfirmPassword.setError("Please provide your confirmation password");
+           }
+           else {
+               String name = etName.getText().toString();
+               String surname = etSurname.getText().toString();
+               String username = etUsername.getText().toString();
+               String password = etPassword.getText().toString();
+               String confirmPassword = etConfirmPassword.getText().toString();
 
-        //Checking if the EditText for the edit texts is empty
-        if(etName.getText().toString().equals("")){
-            etName.setError("Please provide your Name");
-        }
-        else if(etSurname.getText().toString().equals("")){
-            etSurname.setError("Please provide your Surname");
-        }
-        else if(etUsername.getText().toString().equals("")){
+               Intent home = new Intent(SignUpScreen.this,Home.class);
+               startActivity(home);
 
-            etUsername.setError("Please provide your Username");
-        }
-        else if(etPassword.getText().toString().equals("")){
-            etPassword.setError("Please provide your Password");
-        }
-        else if(etConfirmPassword.getText().toString().equals("")){
-            etConfirmPassword.setError("Please provide your confirmation password");
-        }
-        else {
+               addNewUser(name,surname,username,password,confirmPassword,db);
+           }
+       }
+       // The method for adding the new user to the sqlite database
+       public void addNewUser(String name,String surname,String username,String password, String confirmPassword,SQLiteDatabase db){
+           // Setting values to the User class
+           user = new User(name,surname,username,password,confirmPassword);
 
-            //Declaring the string variables for holding the values from the edit texts
-            String name = etName.getText().toString();
-            String surname = etSurname.getText().toString();
-            String username = etUsername.getText().toString();
-            String password = etPassword.getText().toString();
-            String confirmPassword = etConfirmPassword.getText().toString();
+           pref = getSharedPreferences("UsersPref", SignUpScreen.MODE_PRIVATE);
+           editor = pref.edit();
 
-            Intent home = new Intent(SignUpScreen.this,Home.class);
-            startActivity(home);
-        //    Context context=null;
+           Toast.makeText(SignUpScreen.this,"Name "+user.getName()+"Surname "+user.getSurname()+"Username "+user.getUsername()+"Password "+user.getPassword()+"Confirm Password "+user.getConfirmPassword(),Toast.LENGTH_SHORT).show();
 
+           editor.putString("Name",user.getName());
+           editor.putString("Surname",user.getSurname());
+           editor.putString("Username",user.getUsername());
+           editor.putString("Password", user.getPassword());
+           editor.putString("ConfirmPassword", user.getConfirmPassword());
+           Toast.makeText(SignUpScreen.this,"Successful",Toast.LENGTH_SHORT).show();
+           editor.commit();
+           datasource.insertUsers(user.getName(),user.getSurname(),user.getUsername(),user.getPassword(),user.getConfirmPassword(),db);
+           Intent home = new Intent(SignUpScreen.this,Home.class);
+           startActivity(home);
+       }
+   }
 
-        //   db=datasource.getWritableDatabase();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
 
-           addNewUser(name,surname,username,password,confirmPassword);
-         //   addNewUser(name,surname,username,password,confirmPassword,db);
+        MenuInflater inflater = getMenuInflater();
+        getMenuInflater().inflate(R.menu.menu_welcome, menu);
 
-
-        }
-
-
+        return true;
     }
 
-    // The method for adding the new user to the sqlite database
-    public void addNewUser(String name,String surname,String username,String password, String confirmPassword){
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-
-
-        // Setting values to the User class
-        user = new User(name,surname,username,password,confirmPassword);
-
-        pref = getSharedPreferences("UsersPref", SignUpScreen.MODE_PRIVATE);
-        editor = pref.edit();
-
-
-        Toast.makeText(SignUpScreen.this,"Name "+user.getName()+"Surname "+user.getSurname()+"Username "+user.getUsername()+"Password "+user.getPassword()+"Confirm Password "+user.getConfirmPassword(),Toast.LENGTH_SHORT).show();
-       // Toast.makeText(SignUpScreen.this,"Name "+name+"Surname "+surname+"Username "+username+"Password "+password+"Confirm Password "+confirmPassword,Toast.LENGTH_SHORT).show();
-
-        editor.putString("Name",user.getName());
-        editor.putString("Surname",user.getSurname());
-        editor.putString("Username",user.getUsername());
-        editor.putString("Password", user.getPassword());
-        editor.putString("ConfirmPassword", user.getConfirmPassword());
-
-      /*  Tag tag=null;
-
-        Log.d(String.valueOf(tag),name);
-        Log.d(String.valueOf(tag),surname);
-        Log.d(String.valueOf(tag),username);
-        Log.d(String.valueOf(tag),password);
-        Log.d(String.valueOf(tag), confirmPassword);
-        Log.d(String.valueOf(tag), String.valueOf(db));*/
-
-      //  editor.apply();
-        Toast.makeText(SignUpScreen.this,"Successful",Toast.LENGTH_SHORT).show();
-        editor.commit();
-       // SQLiteDatabase db;
-
-      //  db.openOrCreateDatabase("UsersDB.DB",context.MODE_PRIVATE,null);
-
-
-
-
-       // db = openOrCreateDatabase("UsersDB.db",context.MODE_PRIVATE,null);
-
-      //  db = datasource.getWritableDatabase();
-
-
-
-      //  datasource.insertUsers(user.getName(),user.getSurname(),user.getUsername(),user.getPassword(),user.getConfirmPassword(),db);
-      //  datasource.insertUsers(user.getName(),user.getSurname(),user.getUsername(),user.getPassword(),user.getConfirmPassword());
-
-        Intent home = new Intent(SignUpScreen.this,Home.class);
-        startActivity(home);
-
-
+        switch(id){
+            case R.id.home:
+                Intent home = new Intent(SignUpScreen.this,Home.class);
+                startActivity(home);
+            case R.id.signIn:
+                Intent intent = new Intent(SignUpScreen.this,SignInScreen.class);
+                startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

@@ -6,6 +6,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -21,11 +24,12 @@ import android.widget.Toast;
 import android.widget.EditText;
 
 public class SignInScreen extends AppCompatActivity {
-    EditText etUsername; // Declaring the variable for storing the username value from the login screen
-    EditText etPassword; // Declaring the variable for storing the password value from the login screen
-    SharedPreferences pref; // Declaring the Shared Preferences values
-    SharedPreferences.Editor editor; // Declaring the Shared Preferences Editor value
-    User user; // Declaring the User object
+    //Declaring variables to hold UI Controls
+    EditText etUsername;
+    EditText etPassword;
+    SharedPreferences pref;
+    SharedPreferences.Editor editor;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,57 +47,91 @@ public class SignInScreen extends AppCompatActivity {
             }
         });
 
-    }
+        etUsername = (EditText) findViewById(R.id.etUsername2);
+        etPassword = (EditText) findViewById(R.id.etPassword2);
 
+    }
     //The method for the login event of the login button
     public void onClickLogin(View view) {
 
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
 
-        checkLoginDetails(username,password);
+        UserValidations validations = new UserValidations();
+
+        validations.checkLoginDetails(username, password);
+
+
+
     }
+    //The class for handling the validations on the login screen
+    private class UserValidations {
 
-    //The method for checking the login details from the shared preferences
-    public void checkLoginDetails(String userName,String passWord) {
-        pref = getSharedPreferences("UsersPref", MODE_PRIVATE); // retrieving the values from the Shared Preferences
-        editor = pref.edit(); // The editor for setting the edit mode on the shared preferences
+        public void checkLoginDetails(String userName,String passWord) {
+            pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
 
-        String name = pref.getString("Name", null).toString();  // Declaring the variable for retrieving  the name from the shared preferences
-        String surname = pref.getString("Surname", null).toString(); // Declaring the variable for retrieving the surname from the shared preferences
-        String username = pref.getString("Username", null).toString(); // Declaring the variable for retrieving the username from the shared preferences
-        String password = pref.getString("password", null).toString(); // Declaring the variable for retrieving the password from the shared preferences
-        String confirmpassword = pref.getString("confirmpassword", null).toString(); // Declaring the variable for retrieving the Confirm Password from the shared preferences
+            editor = pref.edit();
 
-        user = new User(name, surname, username, password, confirmpassword); // Storing values from the shared preferences to the User object
+            String name = pref.getString("Name", null);
+            String surname = pref.getString("Surname", null);
+            String username = pref.getString("Username", null);
+            String password = pref.getString("Password", null);
+            String confirmpassword = pref.getString("ConfirmPassword", null); // Declaring the variable for retrieving the Confirm Password from the shared preferences
 
+            //   checkLoginDetails(username, password);
+      /* if(etUsername.getText().toString().equals("")){
+           etUsername.setError("No value");
+       }*/
+            if(etUsername.getText().toString().equals("")){
+                etUsername.setError("Please supply your username");
+            }
+            else if(etPassword.getText().toString().equals("")) {
 
-      /*  if (etUsername.getText().toString().equals("")) {
-            etUsername.setError("Please provide the Username");
-          } else if (etPassword.getText().toString().equals(""))
-            etPassword.setError("Please provide the Password");
-          }*/
+                etPassword.setError("Please supply your password");
+            }
+            else {
 
-    if(userName.equals("")){
-        etUsername.setError("Please provide the Username");
-    }
-    else if(passWord.equals("")){
-        etPassword.setError("Please provide the password");
-    }
-        else{
+                if(!userName.equals(etUsername.getText().toString())){
+                    Toast.makeText(SignInScreen.this,"Username supplied does not exists",Toast.LENGTH_SHORT).show();
+                }
+                else if(!passWord.equals(etPassword.getText().toString())){
+                    Toast.makeText(SignInScreen.this,"PassWord supplied does not exists",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent home = new Intent(SignInScreen.this,Home.class);
+                    startActivity(home);
+                }
+            }
 
-        if(userName.equals(username) && passWord.equals(password)){
-
-            Intent loginsuccess = new Intent(SignInScreen.this,Home.class);
-            startActivity(loginsuccess);
         }
-        else
-        {
-            Toast.makeText(SignInScreen.this,"The username and password supplied are not correct",Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        MenuInflater inflater = getMenuInflater();
+        getMenuInflater().inflate(R.menu.menu_home2, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        switch(id){
+            case R.id.home:
+                Intent home = new Intent(SignInScreen.this,Home.class);
+                startActivity(home);
+
+            case R.id.signUp:
+
+                Intent intent2 = new Intent(SignInScreen.this,SignUpScreen.class);
+                startActivity(intent2);
         }
-
-      }
-
+        return super.onOptionsItemSelected(item);
     }
 
 }

@@ -16,19 +16,14 @@ import android.widget.TabHost;
 import android.content.Intent;
 
 //Created by Vusi Ngwenya
-//The Activity for welcoming the new person to the app
-
 public class WelcomeActivity extends AppCompatActivity {
-
     TabHost tabhost; //Declaring the variable for the Tab Host to be display on the welcome activity layout
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -38,49 +33,28 @@ public class WelcomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-
-
         //Calling the method for displaying the Tab Host on the welcome screen
      displayTab();
-
     }
-
     //The method for displaying the Tab Host on the Welcome Screen
     public void displayTab(){
-
-        tabhost = (TabHost) findViewById(R.id.tabHost); //The method for assinging the declared Tab Host to the Tab Host on the xml layout
-        tabhost.setup(); // The method for setting up the Tab Host
-
-
-
-        TabHost.TabSpec  firstText = tabhost.newTabSpec("STORYLINES"); // Declaring the TabSpec for setting texts to the Tab Host
-        firstText.setContent(R.id.STORYLINES); // The method for setting the values for the Tab Host with the specified id
+        tabhost = (TabHost) findViewById(R.id.tabHost);
+        tabhost.setup();
+        TabHost.TabSpec  firstText = tabhost.newTabSpec("STORYLINES");
+        firstText.setContent(R.id.STORYLINES);
         firstText.setIndicator("STORYLINES");
-        tabhost.addTab(firstText); // The method for adding the text
-
-
-
-
-        TabHost.TabSpec secondText = tabhost.newTabSpec("COLLECTIONS");// Declaring the second Tab on the TabHost
-        secondText.setContent(R.id.COLLECTIONS);//The method for setting the text to the specified id of the tab
+        tabhost.addTab(firstText);
+        TabHost.TabSpec secondText = tabhost.newTabSpec("COLLECTIONS");
+        secondText.setContent(R.id.COLLECTIONS);
         secondText.setIndicator("COLLECTIONS");
-        tabhost.addTab(secondText); // The method for adding the text to the Tab
+        tabhost.addTab(secondText);
     }
-
-
     //The method for redirecting to the next screen
     public void nextScreen(MenuItem item){
-
-
-       //The switch statement for choosing the item for redirecting the the next screen
         switch(item.getItemId()){
 
             case R.id.action_settings:
-
-
         }
-
         //The Intent for redirecting to the final screen
         Intent intent = new Intent(WelcomeActivity.this,End.class);
         startActivity(intent);
@@ -89,24 +63,14 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-
-      /*  SubMenu s1 =menu.addSubMenu("Home");
-        s1.setIcon(R.drawable.home);
-
-        SubMenu s2 = menu.addSubMenu("Sign In");
-        s2.setIcon(R.drawable.ic_share_white_48dp);*/
-
         MenuInflater inflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_welcome, menu);
-
 
         return true;
     }
 
     //The method for setting the action to the icon
     public void setActionIcon(MenuItem menuItem){
-
-
         menuItem.setIcon(R.drawable.menu2);
     }
 
@@ -117,14 +81,6 @@ public class WelcomeActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-       // item.setIcon(R.drawable.menu2);
-       //The if statement for choosing the item on the menu list
-       /* if (id == R.id.signIn) {
-
-            Intent intent = new Intent(WelcomeActivity.this,SignIn.class);
-            startActivity(intent);
-            return true;
-        }*/
         switch(id){
             case R.id.home:
                 Intent home = new Intent(WelcomeActivity.this,Home.class);
@@ -132,17 +88,7 @@ public class WelcomeActivity extends AppCompatActivity {
             case R.id.signIn:
                 Intent intent = new Intent(WelcomeActivity.this,SignInScreen.class);
                 startActivity(intent);
-            case R.id.signUp:
-
-                Intent intent2 = new Intent(WelcomeActivity.this,SignInScreen.class);
-                startActivity(intent2);
-
-               /* Intent signUp = new Intent(WelcomeActivity.this,SignUpScreen.class);
-                startActivity(signUp);*/
-
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 }
