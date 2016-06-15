@@ -16,7 +16,7 @@ import android.content.ContentValues;
 
 public class Datasource extends SQLiteOpenHelper {
     //Declaring variables to hold database values
-    private static final String DATABASE_NAME= "UsersDB.db";
+    private static final String DATABASE_NAME= "UsersDB2.db";
     private static final String TABLE_NAME = "Users";
     private static final String COLUMN_NAME1="UserId";
     private static final String COLUMN_NAME2="Name";
@@ -33,7 +33,7 @@ public class Datasource extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String query;
-        db.execSQL(" CREATE TABLE "+TABLE_NAME+"(UserId INTEGER PRIMARY KEY AUTOINCREMENT,Username TEXT,Name TEXT, Surname TEXT,Password TEXT,ConfirmPassword TEXT);");
+        db.execSQL(" CREATE TABLE "+TABLE_NAME+"(UserId INTEGER PRIMARY KEY,Username TEXT,Name TEXT, Surname TEXT,Password TEXT,ConfirmPassword TEXT);");
        // db.execSQL("create table Users (UserId INTEGER PRIMARY KEY AUTOINCREMENT,Username TEXT,Name TEXT, Surname TEXT,Password TEXT,ConfirmPassword TEXT);");
         Log.d(LOGCAT,"Table Created");
     }
@@ -46,6 +46,7 @@ public class Datasource extends SQLiteOpenHelper {
     //The method for inserting the new user into the sqlite database
     public void insertUsers(String name,String surname,String username,String password,String confirmpassword,SQLiteDatabase db){
         Tag Tag=null;
+
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(COLUMN_NAME1,name);

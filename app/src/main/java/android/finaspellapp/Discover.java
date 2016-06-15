@@ -120,6 +120,44 @@ public class Discover extends AppCompatActivity {
         profile2.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
         profile2.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
         profile2.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
+        profile2.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
+        profile2.add(new PersonProfile("sss","sss",R.drawable.iconstelleverse));
+        profile2.add(new PersonProfile("mkmkmk","mkmk",R.drawable.iconfeatured));
+        profile2.add(new PersonProfile("Thei","wi",R.drawable.iconoutdoors));
+        profile2.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
+        profile2.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
+        profile2.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
+        profile2.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
+        profile2.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
+        profile2.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
+        profile2.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
+        profile2.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
+        profile2.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
+        profile2.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
+        profile2.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
+        profile2.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
+        profile2.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
+        profile2.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
+        profile2.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
+        profile2.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
+        profile2.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
+        profile2.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
+        profile2.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
+        profile2.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
+        profile2.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
+        profile2.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
+        profile2.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
+        profile2.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
+        profile2.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
+        profile2.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
+        profile2.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
+        profile2.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
+        profile2.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
+        profile2.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
+        profile2.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
+        profile2.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
+
+
     }
     //The method for populating the Array Adapter
     public void populateAuthorsAdapter(){

@@ -64,6 +64,8 @@ public class SignUpScreen extends AppCompatActivity {
 
         datasource = new Datasource(this);
 
+        db=openOrCreateDatabase("UsersDB.db",MODE_PRIVATE,null);
+
     }
 
 public void onClick(View view){
@@ -111,7 +113,7 @@ public void onClick(View view){
        // The method for adding the new user to the sqlite database
        public void addNewUser(String name,String surname,String username,String password, String confirmPassword,SQLiteDatabase db){
            // Setting values to the User class
-           user = new User(name,surname,username,password,confirmPassword);
+           user = new User(name,surname,username,password, confirmPassword);
 
            pref = getSharedPreferences("UsersPref", SignUpScreen.MODE_PRIVATE);
            editor = pref.edit();
@@ -125,6 +127,7 @@ public void onClick(View view){
            editor.putString("ConfirmPassword", user.getConfirmPassword());
            Toast.makeText(SignUpScreen.this,"Successful",Toast.LENGTH_SHORT).show();
            editor.commit();
+
            datasource.insertUsers(user.getName(),user.getSurname(),user.getUsername(),user.getPassword(),user.getConfirmPassword(),db);
            Intent home = new Intent(SignUpScreen.this,Home.class);
            startActivity(home);

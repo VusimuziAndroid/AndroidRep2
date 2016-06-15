@@ -38,7 +38,8 @@
                 app:showAsAction="always"   android:icon="@drawable/ic_home_black_48dp"></item>
             <item android:id="@+id/discover2" android:title="DISCOVER " android:orderInCategory="100"
                 app:showAsAction="always" android:icon="@drawable/ic_markunread_black_48dp"></item>
-
+            <item android:id="@+id/profile" android:title="PROFILE " android:orderInCategory="100"
+                app:showAsAction="always" android:icon="@drawable/ic_person_add_black_48dp"></item>
             <item android:id="@+id/newstory" android:title="NEW STORY " android:orderInCategory="100"
                 app:showAsAction="always" android:icon="@drawable/ic_add_black_48dp"></item>
             <item android:id="@+id/exit" android:title="EXIT " android:orderInCategory="100"

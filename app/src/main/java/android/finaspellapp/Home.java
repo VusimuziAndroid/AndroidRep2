@@ -2,6 +2,7 @@ package android.finaspellapp;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -47,46 +48,16 @@ public class Home extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
         tvStory = (TextView) findViewById(R.id.tvStory);
-        /*list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-            @Override
-            public void onItemClick(AdapterView <?> parent,View view,
-                                     int position,long id){
-              //  Toast.makeText
-            }
-        });*/
-
-
-
-      /*  ArrayAdapter<String> adapterUsers;
-        ArrayList<String> arrLstUsers = new ArrayList<String>();
-
-        for(int i=0;i<5;i++) {
-            arrLstUsers.add(name + " " + surname);
-        }
-
-        adapterUsers = new ArrayAdapter<String>(Home.this,android.R.layout.simple_list_item_1,
-                arrLstUsers);
-        list.setAdapter(adapterUsers);*/
-
         displayTab();
 
     }
-
     //The method for populating the list view
     public void populateProfileList(){
-
-
-
         profile.add(new PersonProfile("John", "Smith", R.drawable.iconbonappetit));
         profile.add(new PersonProfile("James","Sibiya",R.drawable.iconstelleverse));
         profile.add(new PersonProfile("Tebego","Gumede",R.drawable.iconfeatured));
         profile.add(new PersonProfile("Thembi","Nkosi",R.drawable.iconoutdoors));
-      /*  profile.add(new PersonProfile("John", "Smith", R.drawable.extreme));
-        profile.add(new PersonProfile("Thembi","Nkosi",R.drawable.places));*/
-        //    profile.add(new PersonProfile("Tebego","Gumede",R.drawable.ic_pic1));
-
     }
 
     //The method for populating the Array Adapter
@@ -106,150 +77,60 @@ public class Home extends AppCompatActivity {
         @Override
         public View getView(int position,View convertView,ViewGroup parent){
             View itemView = convertView;
-
             if(itemView == null){
                 itemView = getLayoutInflater().inflate(R.layout.list_single,parent,false);
 
             }
-
-
             PersonProfile persons = profile.get(position);
-
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imgIcons);
             imageView.setImageResource(persons.getPicture());
-
-        /*    TextView tvName = (TextView)findViewById(R.id.tvName);
-            tvName.setText(" "+persons.getName());
-
-            TextView tvSurname = (TextView) findViewById(R.id.tvSurname);
-            tvSurname.setText(" "+persons.getSurname());*/
-
             return itemView;
         }
     }
 
     //The method for displaying the Tab Host on the Welcome Screen
     public void displayTab(){
-
-        tabhost = (TabHost) findViewById(R.id.tabHost); //The method for assinging the declared Tab Host to the Tab Host on the xml layout
-        tabhost.setup(); // The method for setting up the Tab Host
-
-
-
-        TabHost.TabSpec  firstText = tabhost.newTabSpec("STORYLINES"); // Declaring the TabSpec for setting texts to the Tab Host
-        firstText.setContent(R.id.STORYLINES); // The method for setting the values for the Tab Host with the specified id
+        tabhost = (TabHost) findViewById(R.id.tabHost);
+        tabhost.setup();
+        TabHost.TabSpec  firstText = tabhost.newTabSpec("STORYLINES");
+        firstText.setContent(R.id.STORYLINES);
         firstText.setIndicator("STORYLINES");
-        tabhost.addTab(firstText); // The method for adding the text
-
-
-
-
-        TabHost.TabSpec secondText = tabhost.newTabSpec("COLLECTIONS");// Declaring the second Tab on the TabHost
-        secondText.setContent(R.id.COLLECTIONS);//The method for setting the text to the specified id of the tab
+        tabhost.addTab(firstText);
+        TabHost.TabSpec secondText = tabhost.newTabSpec("COLLECTIONS");
+        secondText.setContent(R.id.COLLECTIONS);
         secondText.setIndicator("COLLECTIONS");
-        tabhost.addTab(secondText); // The method for adding the text to the Tab
+        tabhost.addTab(secondText);
     }
-
-       /* private void getDataInList(){
-       PictureCustomList pictureadapter = new PictureCustomList(Home.this,pictures);
-        list = (ListView) findViewById(R.id.list);
-
-        list.setAdapter(pictureadapter);
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener(){
-
-            @Override
-            public void onItemClick(AdapterView<?> parent,View view,int position,long id){
-                Toast.makeText(Home.this,"You clicked at "+pictures[+position],Toast.LENGTH_SHORT).show();
-
-            }
-
-        });
-    }*/
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-
-
         MenuInflater inflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_home, menu);
-
-
         return true;
     }
-
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-
         switch(id){
             case R.id.home2:
-              //  item.setIcon(R.drawable.ic_show_chart_white_48dp);
                 Intent homeIntent2 = new Intent(Home.this,Home.class);
                 startActivity(homeIntent2);
             case R.id.discover2:
-
                 Intent discoverIntent = new Intent(Home.this,Discover.class);
                 startActivity(discoverIntent);
 
-
-               /* Intent discoverIntent = new Intent(Home.this,Discover.class);
-                startActivity(discoverIntent);*/
-         /*   case R.id.notification:
-                Intent notificationIntent = new Intent(Home.this,Notifications.class);
-                startActivity(notificationIntent);*/
-          /*  case R.id.profile2:
-
-                Intent profileIntent = new Intent(Home.this,Discover.class);
-                startActivity(profileIntent);*/
-
-
-
-
-
                 case R.id.newstory:
-
+                 //   android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
                   final  EditText etNewStory = new EditText(Home.this);
-
-                   // etNewStory = (EditText) findViewById(R.id.tv)
-
                     AlertDialog.Builder builder4 = new AlertDialog.Builder(Home.this);
 
-
                     builder4.setTitle("ADD NEW STORY");
-                  //  builder4.setMessage("           ");
-
-                    builder4.setCancelable(false);
-
+                    builder4.setCancelable(true);
                     builder4.setView(etNewStory);
-
-
-
-                   /* builder4.setMessage("Tell the story tp the world ....")
-                            .setPositiveButton("OK",
-                                           new DialogInterface.OnClickListener(){
-
-                                               @Override
-                                               public void onClick(DialogInterface dialog, int which) {
-
-                                               }
-                                           })
-                            .setNegativeButton("CANCEL",
-                                    new DialogInterface.OnClickListener(){
-
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-
-                                        }
-                                    });*/
-
-                    builder4.setPositiveButton("OK",
+                   /* builder4.setPositiveButton("OK",
                             new DialogInterface.OnClickListener() {
 
                                 @Override
@@ -261,47 +142,38 @@ public class Home extends AppCompatActivity {
 
                                 }
                             });
-
                     builder4.setNegativeButton("CANCEL",
-                                    new DialogInterface.OnClickListener(){
+                            new DialogInterface.OnClickListener() {
 
-                                        @Override
-                                        public void onClick(DialogInterface dialog, int which) {
-                                            Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
-                                            Intent home = new Intent(Home.this,Home.class);
-                                            startActivity(home);
-                                        }
-                                    });
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                                    Intent home = new Intent(Home.this, Home.class);
+                                    startActivity(home);
+                                }
+                            }); */
+                    builder4.setMessage("Dialog Fragment")
+                            .setNeutralButton("OK",new DialogInterface.OnClickListener(){
+                                public void onClick(DialogInterface dialog,int id){
 
+                                }
+                            })
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
+                                }
+                            })
 
-                   // builder4.setPositiveButton()
+                            .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
 
-                  /*  builder4.setItems(Monthly, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            for(int i=0;i<5;i++) {
-                                Toast.makeText(getApplicationContext(), Monthly[which], Toast.LENGTH_SHORT).show();
-                            }
-
-                        }
-
-
-                    });*/
-
-
-                    AlertDialog alertDialog4 = builder4.create();
-                    alertDialog4.show();
+                                }
+                            }).show();
 
 
-           /* case R.id.dratfs:
-                Intent newstoryIntent = new Intent(Home.this,Drafts.class);
-                startActivity(newstoryIntent);*/
+                  /*  AlertDialog alertDialog4 = builder4.create();
+                    alertDialog4.show();*/
         }
-
-
         return super.onOptionsItemSelected(item);
     }
-
 }
