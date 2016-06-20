@@ -1,32 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:layout_widthPercent="50%"
+    app:layout_heightPercent="50%">
 
-
-    <LinearLayout android:id="@+id/linearLayout"
+    <!-- The Layout for inflating the list view with the images from the array adapter -->
+    <ImageView
+        android:id="@+id/imgIcons3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="50%"
+        app:layout_marginLeftPercent="0%"
+        android:visibility="visible"
+        />
 
-        <TextView android:id="@+id/tvName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_widthPercent="50%"
-            app:layout_heightPercent="50%">
+    <ImageView
+        android:id="@+id/imgIcons4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="50%"
+        app:layout_marginLeftPercent="0%"
+        android:visibility="visible"
 
-        </TextView>
-
-        <TextView android:id="@+id/tvSurname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_widthPercent="50%"
-            app:layout_heightPercent="50%">
-
-        </TextView>
-
-    </LinearLayout>
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imgIcons3"
+        />
 
 
 </android.support.percent.PercentRelativeLayout>

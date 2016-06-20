@@ -2,16 +2,13 @@
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingLeft="0dp"
-    android:paddingRight="0dp"
-    android:paddingTop="0dp"
-    android:paddingBottom="0dp"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:showIn="@layout/activity_home" tools:context="android.finaspellapp.Home"
-    android:background="@drawable/iconstories">
-
-
+    tools:showIn="@layout/activity_home"
+    tools:context="android.latest_android_project_marshmallow.Home">
 
     <!-- Displaying the Tab Host on the welcome screen -->
 
@@ -61,104 +58,110 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         app:layout_widthPercent="100%"
-                        app:layout_heightPercent="100%"
+                        app:layout_heightPercent="500%"
+                        android:paddingLeft="-55dp"
+                        app:layout_marginLeftPercent="-55%"
+
                         android:text="STORYLINES"
                         android:focusable="false"
                         android:orientation="vertical"
-                       >
+
+                        >
 
                     </LinearLayout>
 
                     <!-- The Linearlayout for the COLLECTIONS (second tab) -->
                     <LinearLayout
                         android:id="@+id/COLLECTIONS"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_heightPercent="700%"
-                        app:layout_widthPercent="500%"
-                        app:layout_marginLeftPercent="50%"
-                        app:layout_marginTopPercent="50%"
 
+                        android:background="#FFFFFF"
                         android:text="COLLECTIONS"
                         android:focusable="false"
                         android:orientation="vertical">
 
-                         <!--  <ListView android:id="@+id/list"
-                             android:layout_width="wrap_content"
-                             android:layout_height="wrap_content"/> -->
-
-                     <!--   <LinearLayout
+                        <LinearLayout
                             android:id="@+id/linearLayout"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="#FFFFFF"
-                            android:orientation="vertical"
-                            > -->
-
-
+                            android:layout_height="match_parent"
+                            app:layout_heightPercent="100%"
+                            android:paddingLeft="-55dp"
+                            app:layout_marginLeftPercent="-55%"
+                            android:orientation="vertical">
 
                             <ImageButton
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                app:layout_widthPercent="8%"
-                                app:layout_heightPercent="50%"
+                                android:layout_width="400dp"
+                                android:layout_height="100dp"
+                                app:layout_widthPercent="100%"
+                                app:layout_heightPercent="200%"
                                 android:id="@+id/imgFeatured"
                                 android:background="@drawable/iconfeatured"
                                 app:layout_marginTopPercent="50%"
                                 app:layout_marginLeftPercent="50%"
-                                app:layout_marginStartPercent="0%"
+                                app:layout_marginStartPercent="50%"
                                 />
 
                             <ImageButton
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                app:layout_widthPercent="8%"
-                                app:layout_heightPercent="50%"
+                                android:layout_width="400dp"
+                                android:layout_height="100dp"
+                                app:layout_widthPercent="100%"
+                                app:layout_heightPercent="200%"
                                 android:id="@+id/imgStellerVerse"
                                 android:background="@drawable/iconstelleverse"
                                 app:layout_marginTopPercent="50%"
                                 app:layout_marginLeftPercent="50%"
-                                app:layout_marginStartPercent="0%"
+                                app:layout_marginStartPercent="50%"
                                 />
 
                             <ImageButton
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                app:layout_heightPercent="8%"
-                                app:layout_widthPercent="50%"
+                                android:layout_width="400dp"
+                                android:layout_height="100dp"
+                                app:layout_heightPercent="200%"
+                                app:layout_widthPercent="100%"
                                 android:id="@+id/imgBonAppetite"
                                 android:background="@drawable/iconbonappetit"
                                 app:layout_marginTopPercent="40%"
                                 app:layout_marginLeftPercent="50%"
-                                app:layout_marginStartPercent="0%"
+                                app:layout_marginStartPercent="50%"
                                 />
 
                             <ImageButton
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                app:layout_heightPercent="8%"
-                                app:layout_widthPercent="20%"
+                                android:layout_width="400dp"
+                                android:layout_height="100dp"
+                                app:layout_heightPercent="200%"
+                                app:layout_widthPercent="100%"
                                 android:id="@+id/imgOutdoors"
                                 android:background="@drawable/iconoutdoors"
                                 app:layout_marginTopPercent="40%"
                                 app:layout_marginLeftPercent="50%"
-                                app:layout_marginStartPercent="0%"/>
+                                app:layout_marginStartPercent="50%"/>
 
+                            <!--      <ImageButton
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      app:layout_heightPercent="30%"
+                                      app:layout_widthPercent="10%"
+                                      android:id="@+id/imgExtreme"
+                                      android:background="@drawable/extreme"
+                                      app:layout_marginTopPercent="40%"
+                                      app:layout_marginLeftPercent="50%"
+                                      app:layout_marginStartPercent="0%"/> -->
                             <ImageButton
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                app:layout_heightPercent="8%"
-                                app:layout_widthPercent="50%"
+                                android:layout_width="400dp"
+                                android:layout_height="100dp"
+                                app:layout_heightPercent="200%"
+                                app:layout_widthPercent="100%"
                                 android:id="@+id/imgPlaces"
                                 android:background="@drawable/places"
                                 app:layout_marginTopPercent="40%"
                                 app:layout_marginLeftPercent="50%"
-                                app:layout_marginStartPercent="0%"/>
+                                app:layout_marginStartPercent="50%"/>
 
-                    <!--    </LinearLayout>  -->
-
+                        </LinearLayout>
 
                     </LinearLayout>
+
                 </FrameLayout>
             </LinearLayout>
         </TabHost>

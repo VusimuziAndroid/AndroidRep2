@@ -1,10 +1,11 @@
-<!-- The Menu -->
+<?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".WelcomeActivity"
 
 
     >
+
     <!-- The Menu Items on the menu -->
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100"
@@ -12,25 +13,6 @@
         android:icon="@drawable/ic_menu_white_48dp"
         >
         <!-- The sub menu with menu items -->
-      <!--  <menu
-            android:background="@drawable/gradient_bg_color" >
-
-            <item android:id="@+id/home" android:title="HOME" android:orderInCategory="100"
-                app:showAsAction="always"   android:icon="@drawable/ic_home_black_48dp"></item>
-            <item android:id="@+id/discover" android:title="DISCOVER " android:orderInCategory="100"
-                app:showAsAction="always" android:icon="@drawable/ic_markunread_black_48dp"></item>
-            <item android:id="@+id/notification" android:title="NOTIFICATIONS " android:orderInCategory="100"
-                app:showAsAction="always" android:icon="@drawable/ic_show_chart_black_48dp"></item>
-            <item android:id="@+id/profile" android:title="PROFILE " android:orderInCategory="100"
-                app:showAsAction="always" android:icon="@drawable/ic_person_black_48dp"></item>
-            <item android:id="@+id/dratfs" android:title="DRAFTS " android:orderInCategory="100"
-            app:showAsAction="always" android:icon="@drawable/ic_drafts_black_48dp"></item>
-            <item android:id="@+id/newStory" android:title="NEW STORY " android:orderInCategory="100"
-                app:showAsAction="always" android:icon="@drawable/ic_add_black_48dp"></item>
-
-
-        </menu> -->
-
         <menu
             android:background="@drawable/gradient_bg_color" >
 
@@ -38,10 +20,12 @@
                 app:showAsAction="always"   android:icon="@drawable/ic_home_black_48dp"></item>
             <item android:id="@+id/discover2" android:title="DISCOVER " android:orderInCategory="100"
                 app:showAsAction="always" android:icon="@drawable/ic_markunread_black_48dp"></item>
-            <item android:id="@+id/profile" android:title="PROFILE " android:orderInCategory="100"
+            <item android:id="@+id/profile2" android:title="PROFILE " android:orderInCategory="100"
                 app:showAsAction="always" android:icon="@drawable/ic_person_add_black_48dp"></item>
-            <item android:id="@+id/newstory" android:title="NEW STORY " android:orderInCategory="100"
+            <item android:id="@+id/newstory2" android:title="NEW STORY " android:orderInCategory="100"
                 app:showAsAction="always" android:icon="@drawable/ic_add_black_48dp"></item>
+            <item android:id="@+id/sharePic" android:title="SHARE PICTURE" android:orderInCategory="100"
+                app:showAsAction="always" android:icon="@drawable/content_attachment"></item>
             <item android:id="@+id/exit" android:title="EXIT " android:orderInCategory="100"
                 app:showAsAction="always" android:icon="@drawable/ic_notifications_black_48dp"></item>
 
