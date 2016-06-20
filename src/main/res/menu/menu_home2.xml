@@ -1,0 +1,25 @@
+<!-- The Menu -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".WelcomeActivity"
+
+
+    >
+    <!-- The Menu Items on the menu -->
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_menu_white_48dp"
+        >
+        <!-- The sub menu with menu items -->
+        <menu
+            android:background="@drawable/gradient_bg_color" >
+            <!-- The first menu item on the menu list -->
+            <item android:id="@+id/home" android:title="HOME" android:orderInCategory="100"
+                app:showAsAction="always"   android:icon="@drawable/ic_home_black_48dp"></item>
+            <item android:id="@+id/signUp" android:title="SIGN UP " android:orderInCategory="100"
+                app:showAsAction="always" android:icon="@drawable/ic_share_black_48dp"></item>
+
+        </menu>
+    </item>
+</menu>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="0dp"
+    android:paddingTop="0dp"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/imgIcons5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="35%"
+        app:layout_heightPercent="35%"
+        app:layout_marginLeftPercent="0%"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:visibility="visible" />
+
+
+
+    <ImageView
+        android:id="@+id/imgIcons6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="35%"
+        app:layout_heightPercent="35%"
+        app:layout_marginLeftPercent="40%"
+        android:paddingLeft="0dp"
+        android:paddingTop="0dp"
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imgIcons" />
+
+</android.support.percent.PercentRelativeLayout>

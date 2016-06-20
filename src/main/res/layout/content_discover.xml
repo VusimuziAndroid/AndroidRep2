@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_discover"
+    tools:context="android.latest_android_project_marshmallow.Discover"
+    android:background="#FFFFFF">
+
+    <!-- Displaying the Tab Host on the welcome screen -->
+
+    <!-- The Linearlayout for the while tabs on the tab host -->
+
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout5"
+        android:paddingLeft="-30dp"
+        app:layout_marginLeftPercent="-30%"
+        android:background="#FFFFFF"
+        app:layout_marginTopPercent="10%"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true">
+
+        <!-- The Tab Host for the to be displayed on the screen -->
+        <TabHost
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tabHost"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+
+            android:layout_marginStart="33dp">
+            <!-- The Linearlayout for holding the two vertical linearlayouts -->
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!-- The Tab Widget -->
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="314dp"
+                    android:layout_height="wrap_content"
+                    ></TabWidget>
+
+                <!-- The FrameLayout for holding two linearlayout -->
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_aspectRatio="100%"
+                    app:layout_heightPercent="100%"
+
+                    android:focusable="false">
+                    <!-- The Linearlayout for the storyline (first tab) -->
+                    <LinearLayout
+                        android:id="@+id/EDITORSPICS"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="STORYLINES"
+                        android:focusable="false"
+                        android:orientation="vertical"
+                        android:paddingLeft="-20dp"
+                        app:layout_marginLeftPercent="-20%"
+                        android:background="@drawable/bottom2">
+
+
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ListView android:id="@+id/list"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                />
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- The Linearlayout for the COLLECTIONS (second tab) -->
+                    <LinearLayout
+                        android:id="@+id/FEATUREDAUTHORS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_heightPercent="400%"
+                        android:background="#FFFFFF"
+                        android:text="COLLECTIONS"
+                        android:focusable="false"
+                        android:orientation="vertical">
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_marginTopPercent="60%"
+                            app:layout_marginLeftPercent="50%"
+                            android:orientation="vertical">
+
+                            <ListView  android:id="@+id/lsDiscover"
+                                android:layout_width="wrap_content"
+                                android:layout_height='wrap_content'></ListView>
+
+                            <LinearLayout android:id="@+id/linearLayout4"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/lsDiscover"
+                                android:orientation="horizontal">
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:layout_widthPercent="30%"
+                                    app:layout_heightPercent="20%"
+                                    android:id="@+id/imgFeatured"
+                                    android:background="@drawable/ic_home_black_48dp"
+                                    app:layout_marginTopPercent="50%"
+                                    app:layout_marginLeftPercent="50%"
+                                    app:layout_marginStartPercent="0%"
+                                    />
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:layout_widthPercent="20%"
+                                    app:layout_heightPercent="20%"
+                                    android:id="@+id/imgStellerVerse"
+                                    android:background="@drawable/ic_add_black_48dp"
+                                    app:layout_marginTopPercent="50%"
+                                    app:layout_marginLeftPercent="50%"
+                                    app:layout_marginStartPercent="0%"
+                                    />
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:layout_heightPercent="10%"
+                                    app:layout_widthPercent="20%"
+                                    android:id="@+id/imgBonAppetite"
+                                    android:background="@drawable/ic_show_chart_black_48dp"
+                                    app:layout_marginTopPercent="40%"
+                                    app:layout_marginLeftPercent="50%"
+                                    app:layout_marginStartPercent="0%"
+                                    />
+
+                                <ImageButton
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    app:layout_heightPercent="20%"
+                                    app:layout_widthPercent="20%"
+                                    android:id="@+id/imgOutdoors"
+                                    android:background="@drawable/ic_person_black_48dp"
+                                    app:layout_marginTopPercent="40%"
+                                    app:layout_marginLeftPercent="50%"
+                                    app:layout_marginStartPercent="0%"/>
+
+
+                            </LinearLayout>
+
+                            <!--  <TextView android:id="@+id/tvfAuthor"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  app:layout_widthPercent="50%"
+                                  app:layout_heightPercent="50%"
+                                  android:text="John Smith"
+                                  ></TextView>
+
+                              <TextView android:id="@+id/tvsAuthor"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  app:layout_widthPercent="50%"
+                                  app:layout_heightPercent="50%"
+                                  android:text="Peter Johnson"
+                                  ></TextView>
+
+                              <TextView android:id="@+id/tvthAuthor"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  app:layout_widthPercent="50%"
+                                  app:layout_heightPercent="50%"
+                                  android:text="Jabu Rhadebe"
+                                  ></TextView>
+
+                              <TextView android:id="@+id/tvfrthAuthor"
+                                  android:layout_width="wrap_content"
+                                  android:layout_height="wrap_content"
+                                  app:layout_widthPercent="50%"
+                                  app:layout_heightPercent="50%"
+                                  android:text="John Mkhize"
+                                  ></TextView> -->
+
+                            <!-- <ImageButton
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 app:layout_widthPercent="30%"
+                                 app:layout_heightPercent="20%"
+                                 android:id="@+id/imgFeatured"
+                                 android:background="@drawable/iconfeatured"
+                                 app:layout_marginTopPercent="50%"
+                                 app:layout_marginLeftPercent="50%"
+                                 app:layout_marginStartPercent="0%"
+                                 />
+
+                             <ImageButton
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 app:layout_widthPercent="20%"
+                                 app:layout_heightPercent="20%"
+                                 android:id="@+id/imgStellerVerse"
+                                 android:background="@drawable/iconstelleverse"
+                                 app:layout_marginTopPercent="50%"
+                                 app:layout_marginLeftPercent="50%"
+                                 app:layout_marginStartPercent="0%"
+                                 />
+
+                             <ImageButton
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 app:layout_heightPercent="10%"
+                                 app:layout_widthPercent="20%"
+                                 android:id="@+id/imgBonAppetite"
+                                 android:background="@drawable/iconbonappetit"
+                                 app:layout_marginTopPercent="40%"
+                                 app:layout_marginLeftPercent="50%"
+                                 app:layout_marginStartPercent="0%"
+                                 />
+
+                             <ImageButton
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 app:layout_heightPercent="20%"
+                                 app:layout_widthPercent="20%"
+                                 android:id="@+id/imgOutdoors"
+                                 android:background="@drawable/iconoutdoors"
+                                 app:layout_marginTopPercent="40%"
+                                 app:layout_marginLeftPercent="50%"
+                                 app:layout_marginStartPercent="0%"/>
+
+
+                             <ImageButton
+                                 android:layout_width="match_parent"
+                                 android:layout_height="match_parent"
+                                 app:layout_heightPercent="130%"
+                                 app:layout_widthPercent="1%"
+                                 android:id="@+id/imgPlaces"
+                                 android:background="@drawable/places"
+                                 app:layout_marginTopPercent="40%"
+                                 app:layout_marginLeftPercent="50%"
+                                 app:layout_marginStartPercent="0%"/> -->
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+    </LinearLayout>
+</RelativeLayout>

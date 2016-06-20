@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:paddingBottom="0dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_welcome" tools:context=".WelcomeActivity">
+
+    <!-- Displaying the Tab Host on the welcome screen -->
+
+    <!-- The Linearlayout for the while tabs on the tab host -->
+
+    <LinearLayout android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="-17dp"
+        app:layout_marginLeftPercent="-20%"
+        android:background="#FFFFFF"
+
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true">
+
+        <!-- The Tab Host for the to be displayed on the screen -->
+        <TabHost
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/tabHost"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentStart="true"
+            app:layout_marginStartPercent="33%"
+           >
+            <!-- The Linearlayout for holding the two vertical linearlayouts -->
+            <LinearLayout
+                android:layout_width="400dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <!-- The Tab Widget -->
+
+                <TabWidget
+                    android:id="@android:id/tabs"
+                    android:layout_width="314dp"
+                    android:layout_height="wrap_content"
+                    ></TabWidget>
+
+                <!-- The FrameLayout for holding two linearlayout -->
+                <FrameLayout
+                    android:id="@android:id/tabcontent"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_aspectRatio="100%"
+                    app:layout_heightPercent="100%"
+
+                    android:focusable="false">
+                    <!-- The Linearlayout for the storyline (first tab) -->
+                    <LinearLayout
+                        android:id="@+id/STORYLINES"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="STORYLINES"
+                        android:focusable="false"
+                        android:orientation="vertical"
+                        android:paddingLeft="-10dp"
+                        app:layout_marginLeftPercent="0%"
+                        android:background="@drawable/bottom2">
+
+                    </LinearLayout>
+
+                    <!-- The Linearlayout for the COLLECTIONS (second tab) -->
+                    <LinearLayout
+                        android:id="@+id/COLLECTIONS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_marginLeftPercent="0%"
+                        android:paddingLeft="-10dp"
+                        android:background="#FFFFFF"
+                        android:text="COLLECTIONS"
+                        android:focusable="false"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            app:layout_heightPercent="100%"
+                            app:layout_marginLeftPercent="0%"
+                            android:paddingLeft="-10dp"
+                            android:orientation="vertical">
+
+                            <ImageButton
+                                android:layout_width="420dp"
+                                android:layout_height="100dp"
+                                app:layout_widthPercent="110%"
+                                app:layout_heightPercent="200%"
+                                android:id="@+id/imgFeatured"
+                                android:background="@drawable/iconfeatured"
+                                app:layout_marginTopPercent="50%"
+                                app:layout_marginLeftPercent="50%"
+                                app:layout_marginStartPercent="50%"
+                                />
+
+                            <ImageButton
+                                android:layout_width="420dp"
+                                android:layout_height="100dp"
+                                app:layout_widthPercent="110%"
+                                app:layout_heightPercent="200%"
+                                android:id="@+id/imgStellerVerse"
+                                android:background="@drawable/iconstelleverse"
+                                app:layout_marginTopPercent="50%"
+                                app:layout_marginLeftPercent="50%"
+                                app:layout_marginStartPercent="50%"
+                                />
+
+                            <ImageButton
+                                android:layout_width="420dp"
+                                android:layout_height="100dp"
+                                app:layout_heightPercent="200%"
+                                app:layout_widthPercent="110%"
+                                android:id="@+id/imgBonAppetite"
+                                android:background="@drawable/iconbonappetit"
+                                app:layout_marginTopPercent="40%"
+                                app:layout_marginLeftPercent="50%"
+                                app:layout_marginStartPercent="50%"
+                                />
+
+                            <ImageButton
+                                android:layout_width="420dp"
+                                android:layout_height="100dp"
+                                app:layout_heightPercent="200%"
+                                app:layout_widthPercent="110%"
+                                android:id="@+id/imgOutdoors"
+                                android:background="@drawable/iconoutdoors"
+                                app:layout_marginTopPercent="40%"
+                                app:layout_marginLeftPercent="50%"
+                                app:layout_marginStartPercent="50%"/>
+
+                            <!--      <ImageButton
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      app:layout_heightPercent="30%"
+                                      app:layout_widthPercent="10%"
+                                      android:id="@+id/imgExtreme"
+                                      android:background="@drawable/extreme"
+                                      app:layout_marginTopPercent="40%"
+                                      app:layout_marginLeftPercent="50%"
+                                      app:layout_marginStartPercent="0%"/> -->
+                            <ImageButton
+                                android:layout_width="420dp"
+                                android:layout_height="100dp"
+                                app:layout_heightPercent="200%"
+                                app:layout_widthPercent="110%"
+                                android:id="@+id/imgPlaces"
+                                android:background="@drawable/places"
+                                app:layout_marginTopPercent="40%"
+                                app:layout_marginLeftPercent="50%"
+                                app:layout_marginStartPercent="50%"/>
+
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                </FrameLayout>
+            </LinearLayout>
+        </TabHost>
+    </LinearLayout>
+</android.support.percent.PercentRelativeLayout>
