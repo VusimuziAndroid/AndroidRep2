@@ -75,8 +75,11 @@ public class WelcomeActivity extends AppCompatActivity {
                 Intent home = new Intent(WelcomeActivity.this,Home.class);
                 startActivity(home);
             case R.id.signIn:
-                Intent intent = new Intent(WelcomeActivity.this,SignInScreen.class);
+                /*Intent intent = new Intent(WelcomeActivity.this,SignInScreen.class);
+                startActivity(intent);*/
+                Intent intent = new Intent(WelcomeActivity.this,Home.class);
                 startActivity(intent);
+
         }
         return super.onOptionsItemSelected(item);
     }

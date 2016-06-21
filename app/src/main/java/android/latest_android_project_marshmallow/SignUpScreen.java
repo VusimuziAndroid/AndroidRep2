@@ -61,7 +61,6 @@ public class SignUpScreen extends AppCompatActivity {
     public void onClick(View view){
         switch(view.getId()){
             case R.id.bSignUp:
-
                 Registration registration = new Registration();
                 registration.signUp();
         }
@@ -104,12 +103,9 @@ public class SignUpScreen extends AppCompatActivity {
         public void addNewUser(String name,String surname,String username,String password, String confirmPassword){
             // Setting values to the User class
             user = new User(name,surname,username,password, confirmPassword);
-
             pref = getSharedPreferences("UsersPref", SignUpScreen.MODE_PRIVATE);
             editor = pref.edit();
-
             Toast.makeText(SignUpScreen.this, "Name " + user.getName() + "Surname " + user.getSurname() + "Username " + user.getUsername() + "Password " + user.getPassword() + "Confirm Password " + user.getConfirmPassword(), Toast.LENGTH_SHORT).show();
-
             editor.putString("Name",user.getName());
             editor.putString("Surname",user.getSurname());
             editor.putString("Username",user.getUsername());
@@ -117,14 +113,12 @@ public class SignUpScreen extends AppCompatActivity {
             editor.putString("ConfirmPassword", user.getConfirmPassword());
             Toast.makeText(SignUpScreen.this,"Successful",Toast.LENGTH_SHORT).show();
             editor.commit();
-
             // User user = new User(name,surname,username,password,confirmPassword);
             datasource.insertUsers(user);
             Intent home = new Intent(SignUpScreen.this,Home.class);
             startActivity(home);
         }
     }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

@@ -50,8 +50,8 @@ public class SignInScreen extends AppCompatActivity {
         String password = etPassword.getText().toString();*/
 
         Toast.makeText(SignInScreen.this, "Successful", Toast.LENGTH_SHORT).show();
-        Intent home = new Intent(SignInScreen.this,Discover.class);
-        startActivity(home);
+       /* Intent home = new Intent(SignInScreen.this,Discover.class);
+        startActivity(home);*/
        /* Intent home = new Intent(SignInScreen.this,Home.class);
         startActivity(home);*/
       /*  UserValidations validations = new UserValidations();
@@ -77,7 +77,7 @@ public class SignInScreen extends AppCompatActivity {
             } else {
 
                 Context context = null;
-                db = openOrCreateDatabase("UsersDB2.db", MODE_PRIVATE, null);
+                db = openOrCreateDatabase("UsersDB.db", MODE_PRIVATE, null);
 
                 Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword,StoryName,Picture FROM Users", null);
 

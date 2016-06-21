@@ -1,15 +1,21 @@
 package android.latest_android_project_marshmallow;
 
 import android.app.AlertDialog;
+import android.app.SearchManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Home extends AppCompatActivity {
@@ -34,6 +41,13 @@ public class Home extends AppCompatActivity {
     private List<PersonProfile> profile = new ArrayList<PersonProfile>();
     TabHost tabhost;
     TextView tvStory;
+    String[] items;
+    ArrayList<String> listItems;
+    ArrayAdapter<String> adapter;
+    ListView listView;
+    EditText editText;
+    SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +64,7 @@ public class Home extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        tvStory = (TextView) findViewById(R.id.tvMessage);
         displayTab();
     }
     //The method for populating the list view
@@ -104,7 +119,50 @@ public class Home extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_home, menu);
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.action_settings5).getActionView();
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(true);
+        /*initList();
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if(s.toString().equals("")){
+                      initList();
+                }
+                else{
+                }
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });*/
         return true;
+    }
+  /*  public void searchItem(String textToSearch){
+        for(String item:items){
+            if(!item.contains(textToSearch)){
+            }
+        }
+        adapter.notifyDataSetChanged();
+    }*/
+   /* public void initList(){
+        items = new String[]{"Canada","China","Japan","USA"};
+        listItems = new ArrayList<>(Arrays.asList(items));
+        adapter = new ArrayAdapter<String>(this,R.layout.list_profile);
+
+    }*/
+    private class databaseOperations{
+
+        public void addNewMessage(Datasource datasource,Message message){
+            datasource.insertMessage(message);
+        }
     }
     // The method for handling action bar item clicks here
     @Override
@@ -120,7 +178,6 @@ public class Home extends AppCompatActivity {
             case R.id.profile2:
                 Intent profile = new Intent(Home.this,Profile.class);
                 startActivity(profile);
-
                 final ListView list3 = new ListView(Home.this);
                 AlertDialog.Builder builder4 = new AlertDialog.Builder(Home.this,R.style.AlertDialogStyle);
                 builder4.setTitle("STORY LIKES COLLECTIONS");
@@ -134,45 +191,62 @@ public class Home extends AppCompatActivity {
                 alertDialog4.show();
 
                 break;
-            case R.id.newstory2:
+                case R.id.newstory2:
+                 //   pref = getSharedPreferences("UsersPref", SignUpScreen.MODE_PRIVATE);
+                 //   editor = pref.edit();
+                pref = getSharedPreferences("StoryMessagePref", Home.MODE_PRIVATE);
+                editor = pref.edit();
 
                 final EditText etNewStory = new EditText(Home.this);
-                AlertDialog.Builder builder6 = new AlertDialog.Builder(Home.this);
-
+                AlertDialog.Builder builder6 = new AlertDialog.Builder(Home.this,R.style.AlertDialogStyle);
                 builder6.setTitle("ADD NEW STORY");
                 builder6.setCancelable(true);
+                builder6.setMessage("Select the type of media to tell the story, by typing here and click the text button or click the button to upload the picture....");
                 builder6.setView(etNewStory);
-                builder6.setPositiveButton("OK",
+                builder6.setPositiveButton("TEXT",
                         new DialogInterface.OnClickListener() {
-
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
+                                String messageType="Text";
+                                Message message = new Message(etNewStory.getText().toString(),messageType);
+                                //Saving the story telling message on the shared preferences
+                                pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
 
-                                Toast.makeText(getApplicationContext(), "New story shared", Toast.LENGTH_SHORT).show();
+                                editor = pref.edit();
+                                String name = pref.getString("Name", null);
+                                String surname = pref.getString("Surname", null);
+                                String username = pref.getString("Username", null);
+                                String password = pref.getString("Password", null);
+                                String confirmpassword = pref.getString("ConfirmPassword", null);
 
+                                editor.putString("Username",username);
+                                editor.putString("Message",message.getMessage());
+                                editor.putString("MessageType",message.getMessageType());
+                                editor.commit();
+                                Toast.makeText(getApplicationContext(), "New story shared as follows :" + etNewStory.getText().toString(), Toast.LENGTH_SHORT).show();
                                 tvStory.setText(etNewStory.getText().toString());
-
                             }
                         });
-                builder6.setNegativeButton("CANCEL",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
-                                Intent home = new Intent(Home.this, Home.class);
-                                startActivity(home);
-                            }
-                        });
+                     builder6.setNegativeButton("PICTURE",
+                             new DialogInterface.OnClickListener() {
+                                 @Override
+                                 public void onClick(DialogInterface dialog, int which) {
+                                     Toast.makeText(getApplicationContext(), "Share story", Toast.LENGTH_SHORT).show();
+                                     Intent intent = new Intent();
+                                     intent.setType("image/*");
+                                     intent.setAction(Intent.ACTION_GET_CONTENT);
+                                     startActivityForResult(Intent.createChooser(intent,
+                                             "Selected file to upload"), RESULT_LOAD_IMAGE);
+                                 }
+                             });
                 builder6.show();
-            case R.id.sharePic:
-              /*  Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);*/
+                    break;
+        /*    case R.id.sharePic:
                 Intent intent = new Intent();
                 intent.setType("image/*");
                 intent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(Intent.createChooser(intent,
-                        "Selected file to upload"), RESULT_LOAD_IMAGE);
+                        "Selected file to upload"), RESULT_LOAD_IMAGE);*/
         }
         return super.onOptionsItemSelected(item);
     }

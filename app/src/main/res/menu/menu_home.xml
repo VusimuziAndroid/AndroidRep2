@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".WelcomeActivity"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".WelcomeActivity">
 
+    <item android:id="@+id/action_settings6" android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:layout_marginStart="0dp"
+        app:layout_marginLeftPercent="0%"
+        android:icon="@drawable/ic_home_white_48dp"
+        ></item>
+    <item android:id="@+id/action_settings5" android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        app:actionViewClass="android.support.v7.widget.SearchView"
+        android:icon="@drawable/ic_search_white_48dp"
+        ></item>
+    <item android:id="@+id/action_settings4" android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_add_white_48dp"
+        ></item>
 
-    >
-
+    <item android:id="@+id/action_settings2" android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_person_white_48dp"
+        ></item>
     <!-- The Menu Items on the menu -->
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100"
@@ -24,8 +45,8 @@
                 app:showAsAction="always" android:icon="@drawable/ic_person_add_black_48dp"></item>
             <item android:id="@+id/newstory2" android:title="NEW STORY " android:orderInCategory="100"
                 app:showAsAction="always" android:icon="@drawable/ic_add_black_48dp"></item>
-            <item android:id="@+id/sharePic" android:title="SHARE PICTURE" android:orderInCategory="100"
-                app:showAsAction="always" android:icon="@drawable/content_attachment"></item>
+         <!--   <item android:id="@+id/sharePic" android:title="SHARE PICTURE" android:orderInCategory="100"
+                app:showAsAction="always" android:icon="@drawable/content_attachment"></item> -->
             <item android:id="@+id/exit" android:title="EXIT " android:orderInCategory="100"
                 app:showAsAction="always" android:icon="@drawable/ic_notifications_black_48dp"></item>
 

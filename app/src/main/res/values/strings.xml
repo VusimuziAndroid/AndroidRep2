@@ -6,6 +6,6 @@
     <string name="title_activity_hyperlpse">Hyperlpse</string>
     <string name="title_activity_end">End</string>
     <string name="title_activity_discover">Discover</string>
-    <string name="title_activity_home">Home</string>
+    <string name="title_activity_home"> </string>
     <string name="title_activity_profile">Profile</string>
 </resources>
