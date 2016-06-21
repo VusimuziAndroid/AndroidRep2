@@ -30,11 +30,11 @@ public class Profile extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        displayTab();
+      //  displayTab();
     }
 
     //The method for displaying the headings of the tab host
-    public void displayTab(){
+   /* public void displayTab(){
         tabhost = (TabHost) findViewById(R.id.tabHost);
         tabhost.setup();
 
@@ -47,12 +47,7 @@ public class Profile extends AppCompatActivity {
         secondText.setContent(R.id.LIKES);
         secondText.setIndicator("LIKES");
         tabhost.addTab(secondText);
-
-       /* TabHost.TabSpec thirdText = tabhost.newTabSpec("COLLECTIONS");
-        secondText.setContent(R.id.COLLECTIONS);
-        secondText.setIndicator("COLLECTIONS");
-        tabhost.addTab(thirdText);*/
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

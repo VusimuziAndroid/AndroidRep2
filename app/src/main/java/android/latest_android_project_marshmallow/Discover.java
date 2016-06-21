@@ -34,6 +34,7 @@ public class Discover extends AppCompatActivity {
     ArrayAdapter<PersonProfile> adapter;
     ArrayAdapter<PersonProfile> adapter2;
     ListView list2;
+    ListView list3;
     TextView tvStory;
     private ArrayList<PersonProfile> profile = new ArrayList<PersonProfile>();
     private ArrayList<PersonProfile> profile2 = new ArrayList<PersonProfile>();
@@ -98,8 +99,6 @@ public class Discover extends AppCompatActivity {
             this.resource = resource;
             personProfiles = (ArrayList<PersonProfile>)objects;
         }
-
-
         @Override
         public View getView(int position,View convertView,ViewGroup parent){
             View itemView = convertView;
@@ -118,8 +117,6 @@ public class Discover extends AppCompatActivity {
             return itemView;
         }
     }
-
-
     //The method for populating the list view
     public void populateAuthorList(){
         profile2.add(new PersonProfile(R.drawable.story_teller1, R.drawable.story_teller2, R.drawable.story_teller3, R.drawable.story_teller4, R.drawable.story_teller5));
@@ -127,23 +124,16 @@ public class Discover extends AppCompatActivity {
         profile2.add(new PersonProfile(R.drawable.story_teller12, R.drawable.story_teller13, R.drawable.story_teller14, R.drawable.story_teller15, R.drawable.story_teller16));
         profile2.add(new PersonProfile(R.drawable.story_teller17, R.drawable.story_teller18, R.drawable.story_teller19, R.drawable.story_teller20, R.drawable.story_teller1));
         profile2.add(new PersonProfile(R.drawable.story_teller2, R.drawable.story_teller3, R.drawable.story_teller4, R.drawable.story_teller5, R.drawable.story_teller6));
-      /*  profile.add(new PersonProfile(R.drawable.editor_pic4));
-        profile.add(new PersonProfile(R.drawable.editor_pic5));*/
     }
-
-
     //The class for the Array Adapter
     private class MyListAdapter2 extends ArrayAdapter<PersonProfile>{
         int resource;
         ArrayList<PersonProfile> personProfiles2 = new ArrayList<PersonProfile>();
-
         public MyListAdapter2(Context context, int resource, List<PersonProfile> objects) {
             super(context, resource, objects);
             this.resource = resource;
             personProfiles2 = (ArrayList<PersonProfile>)objects;
         }
-
-
         @Override
         public View getView(int position,View convertView,ViewGroup parent){
             View itemView = convertView;
@@ -151,7 +141,6 @@ public class Discover extends AppCompatActivity {
             if(itemView == null){
                 itemView = getLayoutInflater().inflate(resource,parent,false);
             }
-
             PersonProfile persons2 = personProfiles2.get(position);
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imgIcons3);
             imageView.setImageResource(persons2.getPicture());
@@ -164,7 +153,6 @@ public class Discover extends AppCompatActivity {
     }
     //The method for displaying the heading of the
     public void displayTab(){
-
         tabhost = (TabHost) findViewById(R.id.tabHost);
         tabhost.setup();
 
@@ -179,130 +167,33 @@ public class Discover extends AppCompatActivity {
         tabhost.addTab(secondText);
     }
 
-
+    // The method is responsible for Inflating the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
 
         MenuInflater inflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_home, menu);
-
         return true;
     }
-
-
+    // The method is responsible for Handling action bar item clicks here
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         switch(id){
             case R.id.home2:
-                //  item.setIcon(R.drawable.ic_show_chart_white_48dp);
                 Intent homeIntent2 = new Intent(Discover.this,Home.class);
                 startActivity(homeIntent2);
                 break;
             case R.id.discover2:
-
                 Intent home = new Intent(Discover.this,Home.class);
                 startActivity(home);
-             /*   final EditText etNewStory = new EditText(Discover.this);
-
-                AlertDialog.Builder builder4 = new AlertDialog.Builder(Discover.this);
-
-
-                builder4.setPositiveButton("OK",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                Toast.makeText(getApplicationContext(), "New story shared", Toast.LENGTH_SHORT).show();
-
-                                tvStory.setText(etNewStory.getText().toString());
-
-                            }
-                        });
-
-                builder4.setNegativeButton("CANCEL",
-                        new DialogInterface.OnClickListener(){
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
-                                Intent home = new Intent(Discover.this,Home.class);
-                                startActivity(home);
-                            }
-                        });
-                AlertDialog alertDialog4 = builder4.create();
-                alertDialog4.show();
-
-                builder4.setTitle("ADD NEW STORY");
-                builder4.setCancelable(false);
-                builder4.setView(etNewStory);*/
-
-               /* AlertDialog.Builder builder = new AlertDialog.Builder(Discover.this,R.style.AlertDialogStyle);
-                builder.setTitle("ADD NEW STORY");
-                builder.setMessage("type story here...");
-
-                builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-
-                builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                    }
-                });
-                AlertDialog alertDialog = builder.create();
-                alertDialog.show();*/
-
-
-
                 break;
             case R.id.profile2:
-
                 final ListView list3 = new ListView(Discover.this);
-
                 AlertDialog.Builder builder4 = new AlertDialog.Builder(Discover.this,R.style.AlertDialogStyle);
-
-
                 builder4.setTitle("KAREN SMITH");
-                builder4.setMessage("STORIES");
-
-               /* builder4.setPositiveButton("STORIES",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-
-                                Toast.makeText(getApplicationContext(), "New story shared", Toast.LENGTH_SHORT).show();
-
-
-
-                            }
-                        });
-
-                builder4.setNegativeButton("LIKES",
-                        new DialogInterface.OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
-                                Intent home = new Intent(Discover.this, Home.class);
-                                startActivity(home);
-                            }
-                        });*/
-
-               // builder4.setTitle("STORIES");
-                builder4.setCancelable(false);
+                builder4.setMessage("COLLECTIONS");
+                builder4.setCancelable(true);
                 populateProfileList();
                 adapter = new MyListAdapter(getApplicationContext(),R.layout.list_single, profile);
                 list3.setAdapter(adapter);
@@ -311,16 +202,17 @@ public class Discover extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getApplicationContext(), "New story shared", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Discover.this,"4000 likes",Toast.LENGTH_SHORT).show();
                             }
                         });
-                builder4.setNegativeButton("COLLECTIONS",
+                builder4.setNegativeButton("STORIES",
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
-                                Intent home = new Intent(Discover.this, Home.class);
+
+                                Intent home = new Intent(Discover.this,Discover.class);
                                 startActivity(home);
+                                Toast.makeText(Discover.this,"STORIES",Toast.LENGTH_SHORT).show();
                             }
                         });
                 AlertDialog alertDialog4 = builder4.create();
