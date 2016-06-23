@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:orientation="horizontal"
         android:paddingLeft="-18dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="-10dp"
         android:id="@+id/linearHost"
         android:background="#FFFFFF"
         android:layout_below="@+id/linearLayout"
@@ -125,7 +125,7 @@
                         android:id="@+id/STORYLINES"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:layout_widthPercent="110%"
+                        app:layout_widthPercent="111%"
                         app:layout_heightPercent="100%"
                         app:layout_marginLeftPercent="-17%"
                         android:paddingLeft="10dp"
@@ -133,18 +133,10 @@
                         android:focusable="false"
                         android:orientation="vertical"
                         >
-                      <TextView
-                          android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:id="@+id/tvMessage"
-                          app:layout_marginTopPercent="55%"
-                          android:text="cccccc"
-                          app:layout_widthPercent="50%"
-                          app:layout_heightPercent="50%"
-                          android:textColor="#FFFFFF"
-                          android:textStyle="normal"
-                          android:textSize="20sp"
-                          android:visibility="visible"/>
+                    <ListView android:id="@+id/lsNames"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        />
 
                     </LinearLayout>
 

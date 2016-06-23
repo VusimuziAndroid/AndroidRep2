@@ -7,11 +7,13 @@ public class Message {
     String username;
     String message;
     String messageType;
+    int picture;
     //The constructor for the message sent when telling the story
-    public Message(String message,String messageType){
+    public Message(String message,String messageType,int picture){
         this.username=username;
         this.message=message;
         this.messageType=messageType;
+        this.picture=picture;
     }
     public String getUsername(){
         return this.username;
@@ -22,4 +24,5 @@ public class Message {
     public String getMessageType(){
         return this.messageType;
     }
+    public int getPicture(){return this.picture;}
 }

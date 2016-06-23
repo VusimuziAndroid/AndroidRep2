@@ -11,7 +11,7 @@
     tools:context="android.latest_android_project_marshmallow.Profile"
     android:background="#FFFFFF">
 
-   <LinearLayout
+  <!-- <LinearLayout
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:orientation="horizontal">
@@ -31,11 +31,22 @@
            app:layout_widthPercent="50%"
            app:layout_heightPercent="50%"
            android:text="COLLECTIONS"/>
-   </LinearLayout>
+   </LinearLayout> -->
 
-  <!--  <LinearLayout android:layout_height="wrap_content"
+   <!-- <ImageButton
+        android:id="@+id/imgButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="40%"
+        app:layout_heightPercent="8%"
+        android:background="@drawable/following"
+        android:layout_marginLeft="100dp"
+        android:textColor="#FFFFFF"></ImageButton> -->
+
+    <LinearLayout android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="horizontal"
+        android:layout_below="@+id/imgButton1"
         android:paddingLeft="0dp"
         android:background="#FFFFFF"
 
@@ -74,6 +85,7 @@
 
                     android:focusable="false">
 
+
                     <LinearLayout
                         android:id="@+id/FOLLOWERS"
                         android:layout_width="match_parent"
@@ -102,6 +114,6 @@
                 </FrameLayout>
             </LinearLayout>
         </TabHost>
-    </LinearLayout> -->
+    </LinearLayout>
 
 </android.support.percent.PercentRelativeLayout>

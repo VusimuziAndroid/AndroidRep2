@@ -46,15 +46,14 @@ public class SignInScreen extends AppCompatActivity {
 
     //The method for the login event of the login button
     public void onClickLogin(View view) {
-      /*  String username = etUsername.getText().toString();
+       /* String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();*/
-
         Toast.makeText(SignInScreen.this, "Successful", Toast.LENGTH_SHORT).show();
        /* Intent home = new Intent(SignInScreen.this,Discover.class);
         startActivity(home);*/
-       /* Intent home = new Intent(SignInScreen.this,Home.class);
-        startActivity(home);*/
-      /*  UserValidations validations = new UserValidations();
+        Intent home = new Intent(SignInScreen.this,Home.class);
+        startActivity(home);
+       /* UserValidations validations = new UserValidations();
         validations.checkLoginDetails(username, password);*/
     }
     //The class for handling the validations on the login screen
@@ -67,7 +66,7 @@ public class SignInScreen extends AppCompatActivity {
             String surname = pref.getString("Surname", null);
             String username = pref.getString("Username", null);
             String password = pref.getString("Password", null);
-            String confirmpassword = pref.getString("ConfirmPassword", null); // Declaring the variable for retrieving the Confirm Password from the shared preferences
+            String confirmpassword = pref.getString("ConfirmPassword", null);
 
             if (etUsername.getText().toString().equals("")) {
                 etUsername.setError("Please supply your username");
@@ -77,7 +76,7 @@ public class SignInScreen extends AppCompatActivity {
             } else {
 
                 Context context = null;
-                db = openOrCreateDatabase("UsersDB.db", MODE_PRIVATE, null);
+                db = openOrCreateDatabase("UsersDB4.db", MODE_PRIVATE, null);
 
                 Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword,StoryName,Picture FROM Users", null);
 
@@ -121,11 +120,10 @@ public class SignInScreen extends AppCompatActivity {
         int id = item.getItemId();
         switch(id){
             case R.id.home:
-                Intent home = new Intent(SignInScreen.this,Home.class);
+                Intent home = new Intent(SignInScreen.this,WelcomeActivity.class);
                 startActivity(home);
 
             case R.id.signUp:
-
                 Intent intent2 = new Intent(SignInScreen.this,SignUpScreen.class);
                 startActivity(intent2);
         }

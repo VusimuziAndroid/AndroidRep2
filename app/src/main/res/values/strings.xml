@@ -5,7 +5,7 @@
     <string name="title_activity_sign_up_screen">SignUpScreen</string>
     <string name="title_activity_hyperlpse">Hyperlpse</string>
     <string name="title_activity_end">End</string>
-    <string name="title_activity_discover">Discover</string>
+    <string name="title_activity_discover"></string>
     <string name="title_activity_home"> </string>
     <string name="title_activity_profile">Profile</string>
 </resources>

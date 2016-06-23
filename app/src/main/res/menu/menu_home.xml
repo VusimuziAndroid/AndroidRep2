@@ -3,13 +3,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".WelcomeActivity">
 
-    <item android:id="@+id/action_settings6" android:title="@string/action_settings"
+    <item android:id="@+id/action_settings7" android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:layout_marginStart="0dp"
+        app:layout_marginLeftPercent="0%"
+        android:icon="@drawable/ic_navigate_before_white_48dp"
+        ></item>
+   <!-- <item android:id="@+id/action_settings6" android:title="@string/action_settings"
         android:orderInCategory="100"
         app:showAsAction="always"
         android:layout_marginStart="0dp"
         app:layout_marginLeftPercent="0%"
         android:icon="@drawable/ic_home_white_48dp"
-        ></item>
+        ></item> -->
     <item android:id="@+id/action_settings5" android:title="@string/action_settings"
         android:orderInCategory="100"
         app:showAsAction="always"
@@ -26,6 +33,11 @@
         android:orderInCategory="100"
         app:showAsAction="always"
         android:icon="@drawable/ic_person_white_48dp"
+        ></item>
+    <item android:id="@+id/action_settings8" android:title="@string/action_settings"
+        android:orderInCategory="100"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_navigate_next_white_48dp"
         ></item>
     <!-- The Menu Items on the menu -->
     <item android:id="@+id/action_settings" android:title="@string/action_settings"

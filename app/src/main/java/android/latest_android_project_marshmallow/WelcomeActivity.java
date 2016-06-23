@@ -72,12 +72,12 @@ public class WelcomeActivity extends AppCompatActivity {
         int id = item.getItemId();
         switch(id){
             case R.id.home:
-                Intent home = new Intent(WelcomeActivity.this,Home.class);
+                Intent home = new Intent(WelcomeActivity.this,WelcomeActivity.class);
                 startActivity(home);
             case R.id.signIn:
                 /*Intent intent = new Intent(WelcomeActivity.this,SignInScreen.class);
                 startActivity(intent);*/
-                Intent intent = new Intent(WelcomeActivity.this,Home.class);
+                Intent intent = new Intent(WelcomeActivity.this,SignInScreen.class);
                 startActivity(intent);
 
         }
