@@ -2,9 +2,7 @@
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal" android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_widthPercent="50%"
-    app:layout_heightPercent="50%">
+    android:layout_height="wrap_content">
 
     <!-- The Layout for inflating the list view with the images from the array adapter -->
 
@@ -22,7 +20,8 @@
         android:layout_height="wrap_content"
         app:layout_widthPercent="50%"
         app:layout_heightPercent="50%"
-        app:layout_marginLeftPercent="0%"
+        android:paddingLeft="-50dp"
+        app:layout_marginLeftPercent="-25%"
         android:visibility="visible" />
 
     <ImageView
@@ -31,7 +30,8 @@
         android:layout_height="wrap_content"
         app:layout_widthPercent="50%"
         app:layout_heightPercent="50%"
-        app:layout_marginLeftPercent="0%"
+        android:paddingLeft="-100dp"
+        app:layout_marginLeftPercent="-20%"
         android:visibility="visible"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/imgIcons" />

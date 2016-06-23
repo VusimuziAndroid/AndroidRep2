@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingLeft="0dp"
-    android:paddingTop="0dp"
-    android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-  <ImageView
-        android:id="@+id/imgIcons9"
+    <ImageView
+        android:id="@+id/imgIcons3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_widthPercent="35%"
-        app:layout_heightPercent="35%"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="50%"
+        android:paddingLeft="-50dp"
         app:layout_marginLeftPercent="0%"
-        android:paddingLeft="0dp"
-        android:paddingTop="0dp"
         android:visibility="visible" />
 
+    <ImageView
+        android:id="@+id/imgIcons4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="50%"
+        android:paddingLeft="-100dp"
+        app:layout_marginLeftPercent="0%"
+        android:visibility="visible"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/imgIcons3" />
   <!--  <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"

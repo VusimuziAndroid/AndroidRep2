@@ -37,7 +37,7 @@
     <item android:id="@+id/action_settings8" android:title="@string/action_settings"
         android:orderInCategory="100"
         app:showAsAction="always"
-        android:icon="@drawable/ic_navigate_next_white_48dp"
+        android:icon="@drawable/ic_show_chart_white_48dp"
         ></item>
     <!-- The Menu Items on the menu -->
     <item android:id="@+id/action_settings" android:title="@string/action_settings"

@@ -15,9 +15,10 @@
 
     <LinearLayout android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        app:layout_widthPercent="140%"
         android:orientation="horizontal"
-        android:paddingLeft="-20dp"
-        app:layout_marginLeftPercent="-20%"
+        android:paddingLeft="-16dp"
+        app:layout_marginLeftPercent="-16%"
         android:background="#FFFFFF"
 
         android:layout_alignParentEnd="true"

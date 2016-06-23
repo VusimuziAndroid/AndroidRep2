@@ -68,7 +68,6 @@ public class Datasource extends SQLiteOpenHelper {
         Log.e(String.valueOf(Tag), message.getMessage());
         Log.e(String.valueOf(Tag), message.getMessageType());
         db.insert(databaseValues.TABLE_NAME, null, values);
-        //     db.endTransaction();
         db.close();
     }
    public void updateMessage(Message message){

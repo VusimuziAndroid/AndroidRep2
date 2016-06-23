@@ -46,8 +46,7 @@
     <LinearLayout android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:orientation="horizontal"
-        android:layout_below="@+id/imgButton1"
-        android:paddingLeft="0dp"
+        android:paddingLeft="-50dp"
         android:background="#FFFFFF"
 
         android:layout_alignParentEnd="true"
@@ -87,13 +86,17 @@
 
 
                     <LinearLayout
-                        android:id="@+id/FOLLOWERS"
+                        android:id="@+id/COLLECTIONS"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
 
                         android:text="FOLLOWERS"
                         android:focusable="false"
                         android:orientation="vertical">
+                     <ListView
+                         android:id="@+id/lsCollections"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"/>
 
                     </LinearLayout>
 
@@ -107,7 +110,23 @@
                         android:text="LIKES"
                         android:focusable="false"
                         android:orientation="vertical">
+                        <ListView  android:id='@+id/lsLikes'
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                    </LinearLayout>
 
+                    <LinearLayout
+                        android:id="@+id/STORIES"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_heightPercent="400%"
+                        android:background="#FFFFFF"
+                        android:text="STORIES"
+                        android:focusable="false"
+                        android:orientation="vertical">
+                      <ListView android:id="@+id/lsStories"
+                          android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"/>
                     </LinearLayout>
 
 

@@ -1,6 +1,8 @@
 package android.latest_android_project_marshmallow;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -9,17 +11,20 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SignUpScreen extends AppCompatActivity {
 
   //Declaring the variables for holding UI Controls
+  private static final int RESULT_LOAD_IMAGE=1;
             SharedPreferences pref;
     private SharedPreferences.Editor editor;
     Context context=null;
@@ -31,6 +36,7 @@ public class SignUpScreen extends AppCompatActivity {
     EditText etConfirmPassword;
     EditText etName;
     EditText etSurname;
+    TextView tvStory;
     User user;
     SQLiteDatabase db;
 
@@ -141,8 +147,59 @@ public class SignUpScreen extends AppCompatActivity {
                 Intent home = new Intent(SignUpScreen.this,Home.class);
                 startActivity(home);
             case R.id.signIn:
-                Intent intent = new Intent(SignUpScreen.this,SignInScreen.class);
-                startActivity(intent);
+               /* Intent intent = new Intent(SignUpScreen.this,SignInScreen.class);
+                startActivity(intent);*/
+                pref = getSharedPreferences("StoryMessagePref", Home.MODE_PRIVATE);
+                editor = pref.edit();
+                final EditText etNewStory = new EditText(SignUpScreen.this);
+                AlertDialog.Builder builder6 = new AlertDialog.Builder(SignUpScreen.this);
+               View  inflater =getLayoutInflater().inflate(R.layout.dialog_signin,null);
+
+                builder6.setView(inflater)
+                        .setPositiveButton("SIGN IN",new DialogInterface.OnClickListener(){
+                            @Override
+                            public void onClick(DialogInterface dialog,int id){
+
+                            }
+                        })
+                        .setNegativeButton("CANCEL",new DialogInterface.OnClickListener(){
+
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                            }
+                        });
+                builder6.create();
+                builder6.show();
+
+             /*   builder6.setTitle("ADD NEW STORY");
+                builder6.setCancelable(true);
+                builder6.setMessage("Type your story here .....");
+                builder6.setView(etNewStory);
+                builder6.setPositiveButton("TEXT",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                String messageType="Text";
+
+                                int blob=R.drawable.pro_pic1;
+
+                                tvStory.setText(etNewStory.getText().toString());
+                            }
+                        });
+                builder6.setNegativeButton("PICTURE",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(getApplicationContext(), "Share story", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent();
+                                intent.setType("image/*");
+                                intent.setAction(Intent.ACTION_GET_CONTENT);
+                                startActivityForResult(Intent.createChooser(intent,
+                                        "Selected file to upload"), RESULT_LOAD_IMAGE);
+                            }
+                        });
+                builder6.show();*/
         }
         return super.onOptionsItemSelected(item);
     }

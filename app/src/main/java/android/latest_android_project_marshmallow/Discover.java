@@ -27,6 +27,7 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,7 +86,6 @@ public class Discover extends AppCompatActivity {
         list2.setAdapter(adapter2);
 
     }
-
     //The method for populating the list view
     public void populateProfileList(){
         profile.add(new PersonProfile(R.drawable.editor_pic1, R.drawable.editor_pic2, R.drawable.editor_pic3, R.drawable.editor_pic4, R.drawable.editor_pic5));
@@ -93,11 +93,7 @@ public class Discover extends AppCompatActivity {
         profile.add(new PersonProfile(R.drawable.editor_pic11, R.drawable.editor_pic12, R.drawable.editor_pic13, R.drawable.editor_pic14, R.drawable.editor_pic15));
         profile.add(new PersonProfile(R.drawable.editor_pic16, R.drawable.editor_pic1, R.drawable.editor_pic2, R.drawable.editor_pic3, R.drawable.editor_pic4));
         profile.add(new PersonProfile(R.drawable.editor_pic15, R.drawable.editor_pic1, R.drawable.editor_pic2, R.drawable.editor_pic3, R.drawable.editor_pic4));
-      /*  profile.add(new PersonProfile(R.drawable.editor_pic4));
-        profile.add(new PersonProfile(R.drawable.editor_pic5));*/
     }
-
-
     //The class for the Array Adapter
     private class MyListAdapter extends ArrayAdapter<PersonProfile>{
         int resource;
@@ -190,33 +186,11 @@ public class Discover extends AppCompatActivity {
         queryTextListener = new SearchView.OnQueryTextListener(){
             @Override
             public boolean onQueryTextSubmit(String query) {
-               /* final ListView list3 = new ListView(Home.this);
-                AlertDialog.Builder builder4 = new AlertDialog.Builder(Home.this,R.style.AlertDialogStyle);
-                builder4.setTitle("STORY LIKES COLLECTIONS");
-                builder4.setCancelable(false);
-                populateProfileList();
-                ArrayAdapter<PersonProfile> adapter;
-                adapter = new MyListAdapter(Home.this,R.layout.list_single, (List<PersonProfile>) profile);
-                list3.setAdapter(adapter);
-                builder4.setView(list3);
-                AlertDialog alertDialog4 = builder4.create();
-                alertDialog4.show();*/
                 databaseOperations.viewProfiles();
                 return false;
             }
             @Override
             public boolean onQueryTextChange(String newText) {
-               /* final ListView list3 = new ListView(Home.this);
-                AlertDialog.Builder builder4 = new AlertDialog.Builder(Home.this,R.style.AlertDialogStyle);
-                builder4.setTitle("PROFILES");
-                builder4.setCancelable(false);
-                populateProfileList();
-                ArrayAdapter<PersonProfile> adapter;
-                adapter = new MyListAdapter(Home.this,R.layout.list_single, (List<PersonProfile>) profile);
-                list3.setAdapter(adapter);
-                builder4.setView(list3);
-                AlertDialog alertDialog4 = builder4.create();
-                alertDialog4.show();*/
                 databaseOperations.viewProfiles();
                 return false;
             }
@@ -255,8 +229,8 @@ public class Discover extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String messageType="Text";
-                            int picture=R.drawable.pro_pic1;
-                            Message message = new Message(etNewStory.getText().toString(),messageType,picture);
+                          //  int picture=R.drawable.pro_pic1;
+                            int blob= R.drawable.pro_pic1;
                             DatabaseOperations databaseOperations = new DatabaseOperations();
                             //Saving the story telling message on the shared preferences
                             pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
@@ -266,10 +240,13 @@ public class Discover extends AppCompatActivity {
                             String username = pref.getString("Username", null);
                             String password = pref.getString("Password", null);
                             String confirmpassword = pref.getString("ConfirmPassword", null);
+                            Message message = new Message(username,etNewStory.getText().toString(),messageType,blob);
                             databaseOperations.addNewMessage(datasource,message);
+                      //      String pic = Integer.toString(picture);
                             editor.putString("Username",username);
                             editor.putString("Message",message.getMessage());
                             editor.putString("MessageType",message.getMessageType());
+                            editor.putString("Picture", imgPic.toString());
                             editor.commit();
                             Toast.makeText(getApplicationContext(), "New story shared as follows :" + etNewStory.getText().toString(), Toast.LENGTH_SHORT).show();
                             tvStory.setText(etNewStory.getText().toString());
@@ -317,7 +294,6 @@ public class Discover extends AppCompatActivity {
                 Intent discoverIntent = new Intent(Discover.this,Discover.class);
                 startActivity(discoverIntent);
             case R.id.profile2:
-                // databaseOperations.viewProfiles();
                 Intent profile = new Intent(Discover.this,Profile.class);
                 startActivity(profile);
                 break;
@@ -335,7 +311,6 @@ public class Discover extends AppCompatActivity {
                 Intent discover = new Intent(Discover.this,Discover.class);
                 startActivity(discover);
                 break;
-
         }
         return super.onOptionsItemSelected(item);
     }

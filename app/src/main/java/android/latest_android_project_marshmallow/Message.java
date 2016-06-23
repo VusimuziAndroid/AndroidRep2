@@ -1,5 +1,7 @@
 package android.latest_android_project_marshmallow;
 
+import java.sql.Blob;
+
 /**
  * Created by Vusi Ngwenya on 6/21/2016.
  */
@@ -9,7 +11,7 @@ public class Message {
     String messageType;
     int picture;
     //The constructor for the message sent when telling the story
-    public Message(String message,String messageType,int picture){
+    public Message(String username,String message,String messageType,int picture){
         this.username=username;
         this.message=message;
         this.messageType=messageType;
