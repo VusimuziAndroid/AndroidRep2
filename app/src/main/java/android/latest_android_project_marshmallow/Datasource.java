@@ -44,11 +44,11 @@ public class Datasource extends SQLiteOpenHelper {
         Tag Tag=null;
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put(databaseValues.COLUMN_NAME3,user.getUsername());
         values.put(databaseValues.COLUMN_NAME1,user.getName());
         values.put(databaseValues.COLUMN_NAME2,user.getSurname());
-        values.put(databaseValues.COLUMN_NAME3,user.getUsername());
         values.put(databaseValues.COLUMN_NAME4,user.getPassword());
-        values.put(databaseValues.COLUMN_NAME5, user.getConfirmPassword());
+        values.put(databaseValues.COLUMN_NAME5,user.getConfirmPassword());
         Log.e(String.valueOf(Tag), user.getName());
         Log.e(String.valueOf(Tag), user.getSurname());
         Log.e(String.valueOf(Tag), user.getUsername());

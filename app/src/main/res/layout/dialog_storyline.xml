@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ImageView android:src="@drawable/latest_steller_logo2"
+        android:layout_width="350dp"
+        android:layout_height="64dp"
+        android:scaleType="center"
+        android:background="#FFFFFF"
+        android:contentDescription="Steller"/>
+
+    <EditText
+        android:id="@+id/etStoryLine"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:textColor="#1A1F35"
+        android:textStyle="normal"
+        android:hint="Share your story here"
+        android:backgroundTint="#1A1F35" />
+
+
+</LinearLayout>

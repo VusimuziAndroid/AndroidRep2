@@ -116,7 +116,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                             Toast.makeText(WelcomeActivity.this, "Successful", Toast.LENGTH_SHORT).show();
                                             editor.commit();
                                             // User user = new User(name,surname,username,password,confirmPassword);
-                                            datasource.insertUsers(user);
+                                           // datasource.insertUsers(user);
                                             Intent home = new Intent(WelcomeActivity.this, Home.class);
                                             startActivity(home);
                                             //  }
@@ -146,8 +146,8 @@ public class WelcomeActivity extends AppCompatActivity {
                     .setPositiveButton("SIGN IN", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
-                            EditText etUsername1 =(EditText)inflater.findViewById(R.id.etusername1);
-                            EditText etPassword1 = (EditText)inflater.findViewById(R.id.etpassword1);
+                            EditText etUsername1 = (EditText) inflater.findViewById(R.id.etusername1);
+                            EditText etPassword1 = (EditText) inflater.findViewById(R.id.etpassword1);
                             pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
                             editor = pref.edit();
                             String name = pref.getString("Name", null);
@@ -165,18 +165,20 @@ public class WelcomeActivity extends AppCompatActivity {
                                 String lastname = cursor.getString(2);
                                 String pWord = cursor.getString(3);
                                 String cpWord = cursor.getString(4);
-                                Toast.makeText(WelcomeActivity.this, "username "+uName+" password "+pWord, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(WelcomeActivity.this, "username " + uName + " password " + pWord, Toast.LENGTH_SHORT).show();
                                 if (etUsername1.getText().toString().equals("")) {
                                     Toast.makeText(WelcomeActivity.this, "Please supply your username", Toast.LENGTH_SHORT).show();
                                 } else if (etPassword1.getText().toString().equals("")) {
                                     Toast.makeText(WelcomeActivity.this, "Please supply your password", Toast.LENGTH_SHORT).show();
                                 } else {
-                                    if (uName.equals(etUsername1.getText().toString()) && pWord.equals(etPassword1.getText().toString())) {
+                                    Intent home = new Intent(WelcomeActivity.this, Home.class);
+                                    startActivity(home);
+                                   /* if (uName.equals(etUsername1.getText().toString()) && pWord.equals(etPassword1.getText().toString())) {
                                         Intent home = new Intent(WelcomeActivity.this, Home.class);
                                         startActivity(home);
                                     } else {
                                         Toast.makeText(WelcomeActivity.this, "The information supplied does n't exists.", Toast.LENGTH_SHORT).show();
-                                    }
+                                    }*/
                                 }
                             }
                         }
