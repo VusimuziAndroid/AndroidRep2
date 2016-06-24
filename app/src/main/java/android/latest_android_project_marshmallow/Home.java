@@ -28,7 +28,11 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.ContentValues;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
@@ -190,7 +194,6 @@ public class Home extends AppCompatActivity {
         }
     }
     private class DatabaseOperations{
-
         public void addNewMessage(Datasource datasource,Message message){
             datasource.insertMessage(message);
         }
@@ -209,10 +212,9 @@ public class Home extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String messageType="Text";
-                           // int picture=R.drawable.pro_pic1;
+                            // int picture=R.drawable.pro_pic1;
                             //Bitmap blob;
                             int blob=R.drawable.pro_pic1;
-                            DatabaseOperations databaseOperations = new DatabaseOperations();
                             //Saving the story telling message on the shared preferences
                             pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
                             editor = pref.edit();
@@ -221,6 +223,7 @@ public class Home extends AppCompatActivity {
                             String username = pref.getString("Username", null);
                             String password = pref.getString("Password", null);
                             String confirmpassword = pref.getString("ConfirmPassword", null);
+                            DatabaseOperations databaseOperations = new DatabaseOperations();
                             Message message = new Message(username,etNewStory.getText().toString(),messageType,blob);
                             Toast.makeText(Home.this,"username: "+message.getUsername()+"message:"+message.getMessage()+" Message Type: "+message.getMessageType()+" Picture:"+message.getPicture(),Toast.LENGTH_SHORT).show();
                             String pic = Integer.toString(blob);
@@ -228,7 +231,17 @@ public class Home extends AppCompatActivity {
                             editor.putString("Username", message.getUsername());
                             editor.putString("Message",message.getMessage());
                             editor.putString("MessageType",message.getMessageType());
-                            editor.putString("Picture",pic);
+                            try {
+                                FileInputStream fls = new FileInputStream("/storage/sdcard/editor_picture.jpg");
+                                byte[] image = new byte[fls.available()];
+                                fls.read(image);
+                                fls.close();
+                            } catch (FileNotFoundException e) {
+                                e.printStackTrace();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            editor.putString("Picture", pic);
                             editor.commit();
                             Toast.makeText(getApplicationContext(), "New story shared as follows :" + etNewStory.getText().toString(), Toast.LENGTH_SHORT).show();
                             tvStory.setText(etNewStory.getText().toString());
@@ -238,12 +251,12 @@ public class Home extends AppCompatActivity {
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(getApplicationContext(), "Share story", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent();
-                            intent.setType("image/*");
-                            intent.setAction(Intent.ACTION_GET_CONTENT);
-                            startActivityForResult(Intent.createChooser(intent,
-                                    "Selected file to upload"), RESULT_LOAD_IMAGE);
+                                Toast.makeText(getApplicationContext(), "Share story", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent();
+                                intent.setType("image/*");
+                                intent.setAction(Intent.ACTION_GET_CONTENT);
+                                startActivityForResult(Intent.createChooser(intent,
+                                        "Selected file to upload"), RESULT_LOAD_IMAGE);
                         }
                     });
             builder6.show();

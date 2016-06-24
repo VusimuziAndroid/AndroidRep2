@@ -16,6 +16,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TabHost;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +26,13 @@ public class Profile extends AppCompatActivity {
     TabHost tabhost;
     ListView list;
     ListView list2;
+    ListView list3;
     ArrayAdapter<PersonProfile> adapter;
     private ArrayList<PersonProfile> profile = new ArrayList<PersonProfile>();
     ArrayAdapter<PersonProfile> storyAdapter;
     private ArrayList<PersonProfile> story = new ArrayList<PersonProfile>();
+    ArrayAdapter<ProfileLikes> likesAdapter;
+    private ArrayList<ProfileLikes> listLikes = new ArrayList<ProfileLikes>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +60,12 @@ public class Profile extends AppCompatActivity {
         list2 = (ListView) findViewById(R.id.lsStories);
 
         list2.setAdapter(storyAdapter);
+
+        populateLikes();
+        likesAdapter = new MyListAdapterProfileLikes(getApplicationContext(),R.layout.list_likes,listLikes);
+        list3 = (ListView) findViewById(R.id.lsLikes2);
+
+        list3.setAdapter(storyAdapter);
     }
     //The method for populating the list view
     public void populateProfileList(){
@@ -93,7 +103,6 @@ public class Profile extends AppCompatActivity {
             return itemView;
         }
     }
-
     //The method for populating the list view
     public void populateStoryList(){
         story.add(new PersonProfile(R.drawable.story_teller25, R.drawable.story_teller24, R.drawable.story_teller23, R.drawable.story_teller22, R.drawable.story_teller21));
@@ -126,6 +135,44 @@ public class Profile extends AppCompatActivity {
 
             ImageView imageView4 = (ImageView) itemView.findViewById(R.id.imgIcons4);
             imageView4.setImageResource(storyLine.getPicture2());
+
+            return itemView;
+        }
+    }
+    //The method for populating the list view
+    public void populateLikes(){
+        listLikes.add(new ProfileLikes(R.drawable.editor_pic1,"1000 likes"));
+        listLikes.add(new ProfileLikes(R.drawable.editor_pic2,"200 likes"));
+        listLikes.add(new ProfileLikes(R.drawable.editor_pic3,"3000 likes"));
+        listLikes.add(new ProfileLikes(R.drawable.editor_pic4,"4500 likes"));
+        listLikes.add(new ProfileLikes(R.drawable.editor_pic5,"5000 likes"));
+    }
+    //The class for the Array Adapter
+    private class MyListAdapterProfileLikes extends ArrayAdapter<ProfileLikes> {
+        int resource;
+        ArrayList<PersonProfile> personProfiles = new ArrayList<PersonProfile>();
+
+        public MyListAdapterProfileLikes(Context context, int resource, List<ProfileLikes> objects) {
+            super(context, resource, objects);
+            this.resource = resource;
+            listLikes = (ArrayList<ProfileLikes>)objects;
+        }
+        @Override
+        public View getView(int position,View convertView,ViewGroup parent){
+            View itemView = convertView;
+
+            if(itemView == null){
+                itemView = getLayoutInflater().inflate(resource,parent,false);
+            }
+
+            ProfileLikes profileLikes = listLikes.get(position);
+            ImageView imageView3 = (ImageView) itemView.findViewById(R.id.imgIcons3);
+            imageView3.setImageResource(profileLikes.getPicture());
+
+            //TextView tvLikes = (TextView) itemView.findViewById(R.id.tv)
+
+           /* ImageView imageView4 = (ImageView) itemView.findViewById(R.id.imgIcons4);
+            imageView4.setImageResource(storyLine.getPicture2());*/
 
             return itemView;
         }

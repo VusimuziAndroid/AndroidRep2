@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.nfc.Tag;
 import android.util.Log;
 
@@ -69,6 +71,13 @@ public class Datasource extends SQLiteOpenHelper {
         Log.e(String.valueOf(Tag), message.getMessageType());
         db.insert(databaseValues.TABLE_NAME, null, values);
         db.close();
+    }
+    public void getImage(){
+        Cursor c = db.rawQuery("SELECT * FROM Stories",null);
+        if(c.moveToNext()){
+            byte[] image = c.getBlob(0);
+            Bitmap bmp = BitmapFactory.decodeByteArray(image,0,image.length);
+        }
     }
    public void updateMessage(Message message){
        Tag Tag = null;

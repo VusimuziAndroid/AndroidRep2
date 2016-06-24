@@ -22,10 +22,14 @@ import android.content.Context;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.xmlpull.v1.XmlPullParserException;
+
+import java.io.IOException;
+
 public class WelcomeActivity extends AppCompatActivity {
     TabHost tabhost; //Declaring the variable for the Tab Host to be display on the welcome activity layout
-    EditText etUsername1;
-    EditText etPassword1;
+    /*EditText etUsername1;
+    EditText etPassword1;*/
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     User user;
@@ -49,10 +53,13 @@ public class WelcomeActivity extends AppCompatActivity {
         //Calling the method for displaying the Tab Host on the welcome screen
         displayTab();
 
+      /*  etUsername1 = (EditText) findViewById(R.id.etusername1);
+        etPassword1 = (EditText) findViewById(R.id.etpassword1);*/
+
 
     }
     //The class for handling the validations on the login screen
-    private class UserValidations {
+   /* private class UserValidations {
         public void checkLoginDetails(String userName, String passWord) {
             pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
 
@@ -97,7 +104,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 }
             }
         }
-    }
+    }*/
     //The method for displaying the Tab Host on the Welcome Screen
     public void displayTab(){
         tabhost = (TabHost) findViewById(R.id.tabHost);
@@ -139,35 +146,61 @@ public class WelcomeActivity extends AppCompatActivity {
                 startActivity(intent);*/
                /* Intent intent = new Intent(WelcomeActivity.this,SignInScreen.class);
                 startActivity(intent);*/
+               // etUsername1 = (EditText) findViewById(R.id.etusername1);
+
                 final EditText etNewStory = new EditText(WelcomeActivity.this);
                 AlertDialog.Builder builder6 = new AlertDialog.Builder(WelcomeActivity.this,R.style.AlertDialogStyle);
-                View  inflater =getLayoutInflater().inflate(R.layout.dialog_signin,null);
+                builder6.setCancelable(false);
+                final View  inflater =getLayoutInflater().inflate(R.layout.dialog_signin,null);
+
                 builder6.setView(inflater)
                         .setPositiveButton("SIGN IN", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
-                            //    Toast.makeText(WelcomeActivity.this, "Successful", Toast.LENGTH_LONG).show();
-                                Intent home = new Intent(WelcomeActivity.this,Home.class);
-                                startActivity(home);
-                               /* etUsername1 = (EditText) findViewById(R.id.etusername1);
-                                etPassword1 = (EditText) findViewById(R.id.etpassword1);*/
+                                 EditText etUsername1 =(EditText)inflater.findViewById(R.id.etusername1);
+                                 EditText etPassword1 = (EditText)inflater.findViewById(R.id.etpassword1);
 
-                               /* String username = etUsername.getText().toString();
-                                String password = etPassword.getText().toString();*/
 
-                               /* if(etUsername1.getText().toString().equals("")){
+                                pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
+                                editor = pref.edit();
+                                String name = pref.getString("Name", null);
+                                String surname = pref.getString("Surname", null);
+                                String username = pref.getString("Username", null);
+                                String password = pref.getString("Password", null);
+                                String confirmpassword = pref.getString("ConfirmPassword", null);
+                              //  Toast.makeText(getApplicationContext(), "User : "+ etUsername1.getText().toString()+"& Password "+etPassword1.getText(), Toast.LENGTH_LONG).show();
+                            //    Toast.makeText(getApplicationContext(), "User : "+ username+"& Password "+password, Toast.LENGTH_LONG).show();
+                              //  etUsername1.setText("Busi@gmail.com");
 
-                                    Toast.makeText(WelcomeActivity.this,"Please supply your username",Toast.LENGTH_SHORT).show();
+                                Context context = null;
+                                db = openOrCreateDatabase("UsersDB4.db", MODE_PRIVATE, null);
+                                Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users", null);
+                                String query = "SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users";
+                                while (cursor.moveToNext()) {
+                                    String uName = cursor.getString(0);
+                                    String firstname = cursor.getString(1);
+                                    String lastname = cursor.getString(2);
+                                    String pWord = cursor.getString(3);
+                                    String cpWord = cursor.getString(4);
+                                  /*  String storyName = cursor.getString(5);
+                                    String picture = cursor.getString(6);*/
+                                    Toast.makeText(WelcomeActivity.this, "username "+uName+" password "+pWord, Toast.LENGTH_SHORT).show();
+                                    if (etUsername1.getText().toString().equals("")) {
+                                        //  etUsername1.setError("Please supply your username");
+                                        Toast.makeText(WelcomeActivity.this, "Please supply your username", Toast.LENGTH_SHORT).show();
+                                    } else if (etPassword1.getText().toString().equals("")) {
+                                        // etPassword1.setError("Please supply your password");
+                                        Toast.makeText(WelcomeActivity.this, "Please supply your password", Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        // Toast.makeText(WelcomeActivity.this,"Successful",Toast.LENGTH_SHORT).show();
+                                        if (uName.equals(etUsername1.getText().toString()) && pWord.equals(etPassword1.getText().toString())) {
+                                            Intent home = new Intent(WelcomeActivity.this, Home.class);
+                                            startActivity(home);
+                                        } else {
+                                            Toast.makeText(WelcomeActivity.this, "The information supplied does n't exists.", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
                                 }
-                                else if(etPassword1.getText().toString().equals("")){
-
-                                    Toast.makeText(WelcomeActivity.this,"Please supply your password",Toast.LENGTH_SHORT).show();
-                                }
-                                else{
-                                    Toast.makeText(WelcomeActivity.this,"Successful",Toast.LENGTH_SHORT).show();
-                                }*/
-                               /* UserValidations validations = new UserValidations();
-                                validations.checkLoginDetails(username, password);*/
                             }
                         })
                         .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
@@ -178,6 +211,7 @@ public class WelcomeActivity extends AppCompatActivity {
                             }
                         });
                 builder6.create();
+
                 builder6.show();
         }
 
