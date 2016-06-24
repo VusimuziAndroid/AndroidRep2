@@ -16,6 +16,8 @@
                 app:showAsAction="always"   android:icon="@drawable/ic_home_black_48dp"></item>
             <item android:id="@+id/signIn" android:title="SIGN IN " android:orderInCategory="100"
                 app:showAsAction="always" android:icon="@drawable/ic_share_black_48dp"></item>
+            <item android:id="@+id/signUp" android:title="SIGN UP " android:orderInCategory="100"
+                app:showAsAction="always" android:icon="@drawable/social_add_person"></item>
 
         </menu>
     </item>
