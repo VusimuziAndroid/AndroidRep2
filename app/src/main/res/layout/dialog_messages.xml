@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="40%"
+        app:layout_heightPercent="40%"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/imgIcons6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_widthPercent="5%"
+            app:layout_heightPercent="5%"
+            android:paddingLeft="-5dp"
+            app:layout_marginLeftPercent="10%"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="50%"
+            app:layout_marginLeftPercent="15%"
+            android:paddingLeft="20dp"
+            app:layout_marginTopPercent="50%"
+            android:textSize="25sp"
+            android:textStyle="normal"/>
+
+    </LinearLayout>
+
+    <!-- <ImageView
+        android:id="@+id/imgIcons6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_widthPercent="50%"
+        app:layout_heightPercent="50%"
+        android:paddingLeft="-5dp"
+        app:layout_marginLeftPercent="0%"
+        android:visibility="visible" /> -->
+
+      <TextView
+          android:id="@+id/tvMessage"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:layout_widthPercent="50%"
+          app:layout_heightPercent="30%"
+          app:layout_marginLeftPercent="60%"
+          android:paddingLeft="10dp"
+          app:layout_marginTopPercent="20%"
+          android:textSize="15sp"
+          android:textStyle="normal"/>
+
+    <!--  <ImageView
+          android:id="@+id/imgIcons5"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:layout_widthPercent="35%"
+          app:layout_heightPercent="35%"
+          app:layout_marginLeftPercent="0%"
+          android:paddingLeft="0dp"
+          android:paddingTop="0dp"
+          android:visibility="visible" />
+
+
+
+      <ImageView
+          android:id="@+id/imgIcons6"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:layout_widthPercent="35%"
+          app:layout_heightPercent="35%"
+          app:layout_marginLeftPercent="40%"
+          android:paddingLeft="0dp"
+          android:paddingTop="0dp"
+          android:visibility="visible"
+          android:layout_alignParentTop="true"
+          android:layout_toEndOf="@+id/imgIcons" /> -->
+
+</android.support.percent.PercentRelativeLayout>

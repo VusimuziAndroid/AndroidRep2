@@ -69,22 +69,14 @@ public class Discover extends AppCompatActivity {
         });
 
         displayTab();//The method for displaying the
-
         populateProfileList();
-
         adapter = new MyListAdapter(getApplicationContext(),R.layout.list_single, profile);
         list = (ListView) findViewById(R.id.list);
-
         list.setAdapter(adapter);
-
-
         populateAuthorList();
-
         adapter2 = new MyListAdapter2(getApplicationContext(),R.layout.list_author_single, profile2);
         list2 = (ListView) findViewById(R.id.lsDiscover);
-
         list2.setAdapter(adapter2);
-
     }
     //The method for populating the list view
     public void populateProfileList(){
@@ -98,7 +90,6 @@ public class Discover extends AppCompatActivity {
     private class MyListAdapter extends ArrayAdapter<PersonProfile>{
         int resource;
         ArrayList<PersonProfile> personProfiles = new ArrayList<PersonProfile>();
-
         public MyListAdapter(Context context, int resource, List<PersonProfile> objects) {
             super(context, resource, objects);
             this.resource = resource;

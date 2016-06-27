@@ -43,6 +43,7 @@ public class Home extends AppCompatActivity {
     private final int SELECT_PHOTO = 1;
     private static final int RESULT_LOAD_IMAGE=1;
     ListView list;
+    ListView listView4;
     private List<PersonProfile> profile = new ArrayList<PersonProfile>();
     //private List<ProfileList> profileList = new ArrayList<ProfileList>();
     TabHost tabhost;
@@ -50,12 +51,16 @@ public class Home extends AppCompatActivity {
     String[] items;
     ArrayList<String> listItems;
     ArrayAdapter<String> adapter;
+    ArrayAdapter<String> messageAdapter;
     MyListAdapterNames adapter2;
     ListView listView;
     private ArrayList<ProfileList> profileList = new ArrayList<ProfileList>();
+    private ArrayList<MessageList> messageList = new ArrayList<MessageList>();
     EditText editText;
     SharedPreferences pref;
     private SharedPreferences.Editor editor;
+    SharedPreferences pref2;
+    private SharedPreferences.Editor editor2;
     Datasource datasource;
     SQLiteDatabase db;
     SearchView searchView;
@@ -110,6 +115,50 @@ public class Home extends AppCompatActivity {
 
             ImageView imageView2 = (ImageView) itemView.findViewById(R.id.imgIcons2);
             imageView2.setImageResource(persons.getPicture2());
+
+            return itemView;
+        }
+    }
+    //The method for populating the list view
+    public void populateMessages(){
+        // profile.add(new PersonProfile(R.drawable.pro_pic1, R.drawable.pro_pic2, R.drawable.pro_pic3, R.drawable.pro_pic4, R.drawable.pro_pic5));
+        pref = getSharedPreferences("StoryLinesPref", MODE_PRIVATE);
+        editor = pref.edit();
+        String username2 = pref.getString("Username", null);
+        String message = pref.getString("Message", null);
+        String messagetype = pref.getString("MessageType", null);
+       /* String password = pref.getString("Password", null);
+        String confirmpassword = pref.getString("ConfirmPassword", null);*/
+
+        messageList.add(new MessageList(R.drawable.pro_pic1,username2,message));
+        messageList.add(new MessageList(R.drawable.pro_pic2,username2,message));
+        messageList.add(new MessageList(R.drawable.pro_pic3, username2, message));
+        messageList.add(new MessageList(R.drawable.pro_pic4, username2, message));
+        messageList.add(new MessageList(R.drawable.pro_pic3,username2,message));
+        //  profile.add(new PersonProfile(R.drawable.editor_pic15, R.drawable.editor_pic1, R.drawable.editor_pic2, R.drawable.editor_pic3, R.drawable.editor_pic4));
+    }
+    //The class for the Array Adapter
+    private class MyListMessageAdapter extends ArrayAdapter<MessageList> {
+        int resource;
+        ArrayList<PersonProfile> messageLists = new ArrayList<PersonProfile>();
+        public MyListMessageAdapter(Context context, int resource, List<MessageList> objects) {
+            super(context, resource, objects);
+            this.resource = resource;
+            messageList = (ArrayList<MessageList>)objects;
+        }
+        //The method for setting the views on the layout
+        @Override
+        public View getView(int position,View convertView,ViewGroup parent){
+            View itemView = convertView;
+            if(itemView == null){
+                itemView = getLayoutInflater().inflate(resource,parent,false);
+            }
+            MessageList messages = messageList.get(position);
+            ImageView imgPicture = (ImageView) itemView.findViewById(R.id.imgIcons6);
+            imgPicture.setImageResource(messages.getProfilePicture());
+
+            TextView tvMessage = (TextView) itemView.findViewById(R.id.tvMessage);
+            tvMessage.setText(messages.getMessage());
 
             return itemView;
         }
@@ -203,23 +252,13 @@ public class Home extends AppCompatActivity {
             builder7.setCancelable(false);
             final View  inflater =getLayoutInflater().inflate(R.layout.dialog_storyline,null);
             builder7.setView(inflater)
-                    .setPositiveButton("SIGN UP", new DialogInterface.OnClickListener() {
+                    .setPositiveButton("TEXT", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int id) {
                                     EditText etStoryLine = (EditText) inflater.findViewById(R.id.etStoryLine);
-                                    String messageType="Text";
+                                    String messageType = "Text";
                                     int pic = R.drawable.editor_pic1;
-                                  /*  EditText etname1 = (EditText) inflater.findViewById(R.id.etname1);
-                                    EditText etsurname1 = (EditText) inflater.findViewById(R.id.etsurname1);
-                                    EditText etPassword1 = (EditText) inflater.findViewById(R.id.etpassword1);
-                                    EditText etConfirmPassword1 = (EditText) inflater.findViewById(R.id.etconfirmpassword1);*/
-
                                     String storyLine = etStoryLine.getText().toString();
-                                   /* String firstName = etname1.getText().toString();
-                                    String lastName = etsurname1.getText().toString();
-                                    String passWord = etPassword1.getText().toString();
-                                    String confirmPassword = etConfirmPassword1.getText().toString();*/
-
                                     pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
                                     editor = pref.edit();
                                     String name = pref.getString("Name", null);
@@ -227,63 +266,43 @@ public class Home extends AppCompatActivity {
                                     String username = pref.getString("Username", null);
                                     String password = pref.getString("Password", null);
                                     String confirmpassword = pref.getString("ConfirmPassword", null);
-                                    Context context = null;
-                                    db = openOrCreateDatabase("UsersDB4.db", MODE_PRIVATE, null);
-                                    Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users", null);
-                                    String query = "SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users";
-                                   /* while (cursor.moveToNext()) {
-                                        String uName = cursor.getString(0);
-                                        String firstname = cursor.getString(1);
-                                        String lastname = cursor.getString(2);
-                                        String pWord = cursor.getString(3);
-                                        String cpWord = cursor.getString(4);
-                                        Toast.makeText(Home.this, "username " + uName + " password " + pWord, Toast.LENGTH_SHORT).show();
-                                        if (etUsername1.getText().toString().equals("")) {
-                                            Toast.makeText(Home.this, "Please supply your username", Toast.LENGTH_SHORT).show();
-                                        } else {*/
-                                            message = new Message(username, storyLine, messageType,pic);
-                                            pref = getSharedPreferences("UsersPref", SignUpScreen.MODE_PRIVATE);
-                                            editor = pref.edit();
-                                            Toast.makeText(Home.this, "Name " + message.username + "Surname " + message.getMessage() + "Username " + message.getMessageType() + "Password " + message.getPicture(), Toast.LENGTH_SHORT).show();
-                                           /* editor.putString("Name", user.getName());
-                                            editor.putString("Surname", user.getSurname());
-                                            editor.putString("Username", user.getUsername());
-                                            editor.putString("Password", user.getPassword());
-                                            editor.putString("ConfirmPassword", user.getConfirmPassword());
-                                            Toast.makeText(WelcomeActivity.this, "Successful", Toast.LENGTH_SHORT).show();
-                                            editor.commit();*/
-                                            // User user = new User(name,surname,username,password,confirmPassword);
-                                          //  datasource.insertUsers(user);
-                                            datasource.insertMessage(message);
-                                            /*Intent home = new Intent(Home.this, Home.class);
-                                            startActivity(home);*/
                                     Toast.makeText(Home.this, "Story Shared", Toast.LENGTH_SHORT).show();
-                                        }
-                                /*    }
-                                }*/
+                                    Context context = null;
+                                    db = openOrCreateDatabase("UsersDB5.db", MODE_PRIVATE, null);
+                                    Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users", null);
+                                    message = new Message(username, storyLine, messageType, pic);
+                                    datasource.insertMessage(message);
+                                    pref = getSharedPreferences("UsersPref", Home.MODE_PRIVATE);
+                                    editor = pref.edit();
+                                    Toast.makeText(Home.this, "Name " + message.username + "Surname " + message.getMessage() + "Username " + message.getMessageType() + "Password " + message.getPicture(), Toast.LENGTH_SHORT).show();
+                                    pref2 = getSharedPreferences("StoryLinesPref", Home.MODE_PRIVATE);
+                                    editor2 = pref2.edit();
+                                    String messageType2 = "TEXT";
+                                    Toast.makeText(Home.this, "Name " + username + "Message"+ etStoryLine.getText().toString()+"MessageType"+messageType2,Toast.LENGTH_SHORT).show();
+                                    editor2.putString("Username",username);
+                                    editor2.putString("Message", etStoryLine.getText().toString());
+                                    editor2.putString("MessageType", messageType2);
+                                    editor2.commit();
+                                    Intent messages = new Intent(Home.this,ViewMessages.class);
+                                    startActivity(messages);
+                                }
                             }
                     )
-                    .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                    .setNegativeButton("PICTURE", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                    Intent home = new Intent(Home.this, WelcomeActivity.class);
-                                    startActivity(home);
+                                    Toast.makeText(getApplicationContext(), "Share story", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent();
+                                    intent.setType("image/*");
+                                    intent.setAction(Intent.ACTION_GET_CONTENT);
+                                    startActivityForResult(Intent.createChooser(intent,
+                                            "Selected file to upload"), RESULT_LOAD_IMAGE);
                                 }
                             }
                     );
             builder7.create();
             builder7.show();
         }
-        /*
-              Toast.makeText(getApplicationContext(), "Share story", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent();
-                                intent.setType("image/*");
-                                intent.setAction(Intent.ACTION_GET_CONTENT);
-                                startActivityForResult(Intent.createChooser(intent,
-                                        "Selected file to upload"), RESULT_LOAD_IMAGE);
-
-        */
-
         //The method for viewing available profiles
         public void viewProfiles()
         {
@@ -296,6 +315,24 @@ public class Home extends AppCompatActivity {
             adapter = new MyListAdapter(Home.this,R.layout.list_single, (List<PersonProfile>) profile);
             list3.setAdapter(adapter);
             builder4.setView(list3);
+            AlertDialog alertDialog4 = builder4.create();
+            alertDialog4.show();
+        }
+        //The method for viewing available profiles
+        public void viewMessages()
+        {
+            ArrayAdapter<MessageList> msgadapter;
+            // messageAdapter = new MyListAdapter(Home.this,R.layout.list_single, (List<PersonProfile>) profile);
+            msgadapter = new MyListMessageAdapter(Home.this,R.layout.dialog_messages,(List<MessageList>) messageList);
+            listView4.setAdapter(msgadapter);
+          //  final ListView list5 = new ListView(Home.this);
+            AlertDialog.Builder builder4 = new AlertDialog.Builder(Home.this,R.style.AlertDialogStyle);
+            builder4.setTitle("STORYLINE");
+            builder4.setCancelable(false);
+           // final View  inflater =getLayoutInflater().inflate(R.layout.dialog_messages,null);
+           // listView4 = (ListView) inflater.findViewById(R.id.ls)
+          //  list5 = (ListView) inflater.findViewById(R.id.tvMessage);
+            builder4.setView(listView4);
             AlertDialog alertDialog4 = builder4.create();
             alertDialog4.show();
         }
@@ -330,11 +367,18 @@ public class Home extends AppCompatActivity {
                 startActivity(profile2);
                 break;
             case R.id.action_settings8:
-                Intent discover = new Intent(Home.this,Discover.class);
-                startActivity(discover);
+               /* Intent discover = new Intent(Home.this,Discover.class);
+                startActivity(discover);*/
+              //  databaseOperations.viewMessages();
+                Intent messages = new Intent(Home.this,ViewMessages.class);
+                startActivity(messages);
+                //  populateProfileList();
+
+                // databaseOperations.viewProfiles();
                 break;
             case R.id.action_settings2:
-              databaseOperations.viewProfiles();
+                Intent profile3 = new Intent(Home.this,Profile.class);
+                startActivity(profile3);
                 break;
         }
         return super.onOptionsItemSelected(item);

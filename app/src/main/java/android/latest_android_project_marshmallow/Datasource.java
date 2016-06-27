@@ -16,7 +16,7 @@ import android.util.Log;
 public class Datasource extends SQLiteOpenHelper {
     private static final String LOGCAT = null;
     private static final android.database.sqlite.SQLiteDatabase.CursorFactory MODE_PRIVATE = null;
-    public static final String DATABASE_NAME= "UsersDB4.db";
+    public static final String DATABASE_NAME= "UsersDB5.db";
     SQLiteDatabase db;
     //The constructor for the SQLite Helper (Datasource class)
     DatabaseValues databaseValues = new DatabaseValues();
@@ -55,7 +55,6 @@ public class Datasource extends SQLiteOpenHelper {
         Log.e(String.valueOf(Tag), user.getPassword());
         Log.e(String.valueOf(Tag), user.getConfirmPassword());
         db.insert(databaseValues.TABLE_NAME, null, values);
-        //     db.endTransaction();
         db.close();
     }
     public void insertMessage(Message message){
@@ -69,7 +68,7 @@ public class Datasource extends SQLiteOpenHelper {
         Log.e(String.valueOf(Tag), message.getUsername());
         Log.e(String.valueOf(Tag), message.getMessage());
         Log.e(String.valueOf(Tag), message.getMessageType());
-        db.insert(databaseValues.TABLE_NAME, null, values);
+        db.insert(databaseValues.TABLE_NAME2, null, values);
         db.close();
     }
     public void getImage(){
@@ -78,7 +77,7 @@ public class Datasource extends SQLiteOpenHelper {
             byte[] image = c.getBlob(0);
             Bitmap bmp = BitmapFactory.decodeByteArray(image,0,image.length);
         }
-    }
+}
    public void updateMessage(Message message){
        Tag Tag = null;
        db = this.getWritableDatabase();
@@ -100,9 +99,9 @@ public class Datasource extends SQLiteOpenHelper {
         private static final String TABLE_NAME = "Users";
         private static final String TABLE_NAME2 = "Stories";
         private static final String TABLE_NAME3 ="Picture";;
-        private static final String COLUMN_NAME1="Name";
-        private static final String COLUMN_NAME2="Surname";
-        private static final String COLUMN_NAME3="Username";
+        private static final String COLUMN_NAME1="Username";
+        private static final String COLUMN_NAME2="Name";
+        private static final String COLUMN_NAME3="Surname";
         private static final String COLUMN_NAME4="Password";
         private static final String COLUMN_NAME5="ConfirmPassword";
         private static final String STORY_COLUMN_NAME1="Username";
