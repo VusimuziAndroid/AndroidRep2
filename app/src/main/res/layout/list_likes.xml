@@ -14,39 +14,16 @@
         app:layout_marginLeftPercent="0%"
         android:visibility="visible" />
 
-   <!-- <ImageView
-        android:id="@+id/imgIcons4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_widthPercent="20%"
-        app:layout_heightPercent="20%"
-        app:layout_marginTopPercent="30%"
-        android:paddingLeft="20dp"
-        app:layout_marginLeftPercent="30%"
-        android:visibility="visible" /> -->
-    <ImageButton
-        android:id="@+id/imgIcons4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#FFFFFF"
-        app:layout_widthPercent="20%"
-        app:layout_heightPercent="25%"
-        app:layout_marginTopPercent="20%"
-        android:paddingLeft="35dp"
-        app:layout_marginLeftPercent="35%"
-        android:visibility="visible" />
-
     <TextView android:id="@+id/tvLikes"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_widthPercent="500%"
+        app:layout_widthPercent="50%"
         app:layout_heightPercent="20%"
         app:layout_marginTopPercent="30%"
-        app:layout_marginLeftPercent="60%"
-        android:paddingLeft="10dp"
-        android:textSize="15sp"
-        android:textStyle="normal"
-        android:visibility="visible"/>
+        app:layout_marginLeftPercent="50%"
+        android:paddingLeft="-60dp"
+        android:textSize="20sp"
+        android:textStyle="normal"/>
     <!--  <TextView
           android:id="@+id/tvName"
           android:layout_width="wrap_content"

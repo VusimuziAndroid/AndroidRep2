@@ -53,16 +53,9 @@
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-
         <meta-data
             android:name="android.app.searchable"
-            android:resource="@xml/search_config" />
-
-        <activity
-            android:name=".ViewMessages"
-            android:label="@string/title_activity_view_messages"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:resource="@xml/search_config"/>
     </application>
 
 </manifest>
