@@ -112,7 +112,7 @@
                         android:text="LIKES"
                         android:focusable="false"
                         android:orientation="vertical">
-                        <ListView  android:id='@+id/lsLikes'
+                        <ListView  android:id="@+id/lsLikes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>
                     </LinearLayout>

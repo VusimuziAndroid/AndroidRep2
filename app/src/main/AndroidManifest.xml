@@ -53,9 +53,17 @@
             android:label="@string/title_activity_profile"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
+
         <meta-data
             android:name="android.app.searchable"
-            android:resource="@xml/search_config"/>
-    </application>
+            android:resource="@xml/search_config" />
 
+        <activity
+            android:name=".ViewMessages"
+            android:label="@string/title_activity_view_messages"
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
+    </application>
+     <uses-permission android:name="android.permission.INTERNET"/>
+     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 </manifest>

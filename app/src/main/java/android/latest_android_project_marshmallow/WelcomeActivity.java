@@ -56,7 +56,7 @@ public class WelcomeActivity extends AppCompatActivity {
     private class UserValidations {
         public void addNewUser(){
             AlertDialog.Builder builder7 = new AlertDialog.Builder(WelcomeActivity.this,R.style.AlertDialogStyle);
-            builder7.setCancelable(false);
+            builder7.setCancelable(true);
             final View  inflater =getLayoutInflater().inflate(R.layout.dialog_signup,null);
             builder7.setView(inflater)
                     .setPositiveButton("SIGN UP", new DialogInterface.OnClickListener() {
@@ -82,7 +82,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                     String password = pref.getString("Password", null);
                                     String confirmpassword = pref.getString("ConfirmPassword", null);
                                     Context context = null;
-                                    db = openOrCreateDatabase("UsersDB4.db", MODE_PRIVATE, null);
+                                    db = openOrCreateDatabase("UsersDB5.db", MODE_PRIVATE, null);
                                     Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users", null);
                                     String query = "SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users";
                                     while (cursor.moveToNext()) {
@@ -103,9 +103,8 @@ public class WelcomeActivity extends AppCompatActivity {
                                         } else if (etConfirmPassword1.getText().toString().equals("")) {
                                             Toast.makeText(WelcomeActivity.this, "Please supply your password", Toast.LENGTH_SHORT).show();
                                         } else {
-                                            //  if (etPassword1.getText().toString().equals(etConfirmPassword1)) {
                                             user = new User(userName, firstName, lastName, passWord, confirmPassword);
-                                            pref = getSharedPreferences("UsersPref", SignUpScreen.MODE_PRIVATE);
+                                            pref = getSharedPreferences("UsersPref", Home.MODE_PRIVATE);
                                             editor = pref.edit();
                                             Toast.makeText(WelcomeActivity.this, "Name " + user.getName() + "Surname " + user.getSurname() + "Username " + user.getUsername() + "Password " + user.getPassword() + "Confirm Password " + user.getConfirmPassword(), Toast.LENGTH_SHORT).show();
                                             editor.putString("Name", user.getName());
@@ -115,24 +114,23 @@ public class WelcomeActivity extends AppCompatActivity {
                                             editor.putString("ConfirmPassword", user.getConfirmPassword());
                                             Toast.makeText(WelcomeActivity.this, "Successful", Toast.LENGTH_SHORT).show();
                                             editor.commit();
-                                            // User user = new User(name,surname,username,password,confirmPassword);
                                             datasource.insertUsers(user);
                                             Intent home = new Intent(WelcomeActivity.this, Home.class);
                                             startActivity(home);
-                                            //  }
+
                                         }
                                     }
                                 }
                             }
                     )
-                        .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        Intent home = new Intent(WelcomeActivity.this, WelcomeActivity.class);
-                                        startActivity(home);
-                                    }
+                    .setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent home = new Intent(WelcomeActivity.this, WelcomeActivity.class);
+                                    startActivity(home);
                                 }
-                        );
+                            }
+                    );
                         builder7.create();
                         builder7.show();
                     }
@@ -146,8 +144,8 @@ public class WelcomeActivity extends AppCompatActivity {
                     .setPositiveButton("SIGN IN", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
-                            EditText etUsername1 =(EditText)inflater.findViewById(R.id.etusername1);
-                            EditText etPassword1 = (EditText)inflater.findViewById(R.id.etpassword1);
+                            EditText etUsername1 = (EditText) inflater.findViewById(R.id.etusername1);
+                            EditText etPassword1 = (EditText) inflater.findViewById(R.id.etpassword1);
                             pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
                             editor = pref.edit();
                             String name = pref.getString("Name", null);
@@ -155,8 +153,9 @@ public class WelcomeActivity extends AppCompatActivity {
                             String username = pref.getString("Username", null);
                             String password = pref.getString("Password", null);
                             String confirmpassword = pref.getString("ConfirmPassword", null);
+
                             Context context = null;
-                            db = openOrCreateDatabase("UsersDB4.db", MODE_PRIVATE, null);
+                            db = openOrCreateDatabase("UsersDB5.db", MODE_PRIVATE, null);
                             Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users", null);
                             String query = "SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users";
                             while (cursor.moveToNext()) {
@@ -165,13 +164,14 @@ public class WelcomeActivity extends AppCompatActivity {
                                 String lastname = cursor.getString(2);
                                 String pWord = cursor.getString(3);
                                 String cpWord = cursor.getString(4);
-                                Toast.makeText(WelcomeActivity.this, "username "+uName+" password "+pWord, Toast.LENGTH_SHORT).show();
+                                Toast.makeText(WelcomeActivity.this, "username " + uName + " password " + pWord, Toast.LENGTH_SHORT).show();
                                 if (etUsername1.getText().toString().equals("")) {
                                     Toast.makeText(WelcomeActivity.this, "Please supply your username", Toast.LENGTH_SHORT).show();
                                 } else if (etPassword1.getText().toString().equals("")) {
                                     Toast.makeText(WelcomeActivity.this, "Please supply your password", Toast.LENGTH_SHORT).show();
-                                } else {
-                                    if (uName.equals(etUsername1.getText().toString()) && pWord.equals(etPassword1.getText().toString())) {
+                                } else
+                                {
+                                   if (uName.equals(etUsername1.getText().toString()) && pWord.equals(etPassword1.getText().toString())) {
                                         Intent home = new Intent(WelcomeActivity.this, Home.class);
                                         startActivity(home);
                                     } else {

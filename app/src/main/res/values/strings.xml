@@ -8,4 +8,5 @@
     <string name="title_activity_discover"></string>
     <string name="title_activity_home"> </string>
     <string name="title_activity_profile"> </string>
+    <string name="title_activity_view_messages">View Messages</string>
 </resources>

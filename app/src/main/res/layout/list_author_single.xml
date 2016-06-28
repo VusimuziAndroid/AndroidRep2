@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.percent.PercentRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical" android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -7,28 +7,35 @@
     app:layout_heightPercent="50%">
 
     <!-- The Layout for inflating the list view with the images from the array adapter -->
-    <ImageView
-        android:id="@+id/imgIcons3"
-        android:layout_width="wrap_content"
+
+    <android.support.percent.PercentRelativeLayout android:orientation="vertical"
         android:layout_height="wrap_content"
-        app:layout_widthPercent="50%"
-        app:layout_heightPercent="50%"
-        app:layout_marginLeftPercent="0%"
-        android:visibility="visible"
-        />
+        android:layout_width="wrap_content">
+        <ImageView
+            android:id="@+id/imgIcons3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="50%"
+            app:layout_marginLeftPercent="0%"
+            android:visibility="visible"
+            />
 
-    <ImageView
-        android:id="@+id/imgIcons4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_widthPercent="50%"
-        app:layout_heightPercent="50%"
-        app:layout_marginLeftPercent="0%"
-        android:visibility="visible"
+        <ImageView
+            android:id="@+id/imgIcons4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_widthPercent="50%"
+            app:layout_heightPercent="50%"
+            app:layout_marginLeftPercent="0%"
+            android:visibility="visible"
 
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/imgIcons3"
-        />
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/imgIcons3"
+            />
 
 
-</android.support.percent.PercentRelativeLayout>
+    </android.support.percent.PercentRelativeLayout>
+
+
+</ScrollView>
