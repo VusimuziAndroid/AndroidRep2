@@ -6,14 +6,6 @@
 
     <!-- The Layout for inflating the list view with the images from the array adapter -->
 
-    <!--  <LinearLayout
-          android:id="@+id/linearLayout1"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          app:layout_marginTopPercent="40%"
-          app:layout_marginLeftPercent="20%"
-          android:orientation="vertical"> -->
-
     <android.support.percent.PercentRelativeLayout  android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content">

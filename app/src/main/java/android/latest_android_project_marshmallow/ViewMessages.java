@@ -69,28 +69,8 @@ public class ViewMessages extends AppCompatActivity {
         String username2 = pref.getString("Username", null);
         String message = pref.getString("Message", null);
         String messagetype = pref.getString("MessageType", null);
-
-        messageList.add(new MessageList(username2,message,messagetype));
-      /*  Context context = null;
-        db = openOrCreateDatabase("UsersDB5.db", MODE_PRIVATE, null);
-        db = datasource.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT Username,Message,MessageType FROM Stories", null);
-
-        cursor.moveToFirst();
-        while(cursor.moveToNext()){
-            String username=cursor.getString(0);
-            String msg=cursor.getString(1);
-            String mType=cursor.getString(2);
-            messageList.add(new MessageList(username,msg,mType));
-        }
-        cursor.moveToLast();
-        cursor.close();*/
-       /*messageList.add(new MessageList(R.drawable.pro_pic2,username2,message));
-        messageList.add(new MessageList(R.drawable.pro_pic3,username2,message));
-        messageList.add(new MessageList(R.drawable.pro_pic4,username2,message));
-        messageList.add(new MessageList(R.drawable.pro_pic5,username2,message));*/
+        messageList.add(new MessageList(username2,message,messagetype,R.drawable.pro_pic1));
     }
-    //The class for the Array Adapter
     private class MyListMessageAdapter extends ArrayAdapter<MessageList> {
         int resource;
         ArrayList<MessageList> msgList = new ArrayList<MessageList>();
@@ -107,16 +87,19 @@ public class ViewMessages extends AppCompatActivity {
                 itemView = getLayoutInflater().inflate(resource,parent,false);
             }
             MessageList mlist = msgList.get(position);
-           /* ImageView imgProPicture = (ImageView) itemView.findViewById(R.id.imgIcons6);*/
-           // imgProPicture.setImageResource(mlist.getProfilePicture());
+            ImageView imgProPicture = (ImageView) itemView.findViewById(R.id.imgIcons6);
+            imgProPicture.setImageResource(mlist.getProfilePicture());
+
             TextView tvUsername = (TextView) itemView.findViewById(R.id.tvUsername);
             tvUsername.setText(mlist.getUsername());
 
             TextView tvMessage = (TextView) itemView.findViewById(R.id.tvMessage);
             tvMessage.setText(mlist.getMessage());
+
             return itemView;
         }
     }
+    //The method for sharing story
     public void shareStory(){
         AlertDialog.Builder builder7 = new AlertDialog.Builder(ViewMessages.this,R.style.AlertDialogStyle);
         builder7.setCancelable(false);
@@ -161,12 +144,6 @@ public class ViewMessages extends AppCompatActivity {
                 .setNegativeButton("PICTURE", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                               /* Toast.makeText(getApplicationContext(), "Share story", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent();
-                                intent.setType("image/*");
-                                intent.setAction(Intent.ACTION_GET_CONTENT);
-                                startActivityForResult(Intent.createChooser(intent,
-                                        "Selected file to upload"), RESULT_LOAD_IMAGE);*/
                                 Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                 startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
                             }
@@ -175,40 +152,47 @@ public class ViewMessages extends AppCompatActivity {
         builder7.create();
         builder7.show();
     }
+    //The method for inflating the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_share, menu);
         return true;
     }
+    //The method handling action bar item
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch(id){
             case R.id.home2:
-                //  item.setIcon(R.drawable.ic_show_chart_white_48dp);
                 Intent homeIntent2 = new Intent(ViewMessages.this,Home.class);
                 startActivity(homeIntent2);
+                break;
             case R.id.discover2:
                 Intent discoverIntent = new Intent(ViewMessages.this,Discover.class);
                 startActivity(discoverIntent);
+                break;
             case R.id.action_settings2:
                 Intent profile = new Intent(ViewMessages.this,Profile.class);
                 startActivity(profile);
+                break;
             case R.id.action_settings4:
                 shareStory();
+                break;
             case R.id.profile2:
                 Intent profile2 = new Intent(ViewMessages.this,Profile.class);
                 startActivity(profile2);
+                break;
             case R.id.newstory2:
                 shareStory();
+                break;
+            case R.id.action_settings8:
+                Intent viewMessages = new Intent(ViewMessages.this,ViewMessages.class);
+                startActivity(viewMessages);
             case R.id.exit:
                 Intent end = new Intent(ViewMessages.this,End.class);
                 startActivity(end);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

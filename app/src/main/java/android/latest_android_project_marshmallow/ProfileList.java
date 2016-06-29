@@ -8,6 +8,7 @@ public class ProfileList {
     public ProfileList(int picture){
         this.picture=picture;
     }
+    //The method for returning the picture
     public int getPicture(){
         return this.picture;
     }

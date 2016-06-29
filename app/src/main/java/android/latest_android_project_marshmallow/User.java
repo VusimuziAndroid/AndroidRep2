@@ -1,7 +1,7 @@
 package android.latest_android_project_marshmallow;
 
 /**
- * Created by ABVN237 on 6/18/2016.
+ * Created by Vusi Ngwenya on 6/18/2016.
  */
 public class User {
     String name;
@@ -9,8 +9,6 @@ public class User {
     String username;
     String password;
     String confirmPassword;
-
-    //The constructor for the User class
     public User(String name,String surname,String username,String password,String confirmPassword){
         this.name = name;
         this.surname = surname;

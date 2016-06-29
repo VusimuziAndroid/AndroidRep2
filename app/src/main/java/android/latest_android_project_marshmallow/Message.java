@@ -10,21 +10,24 @@ public class Message {
     String message;
     String messageType;
     int picture;
-    //The constructor for the message sent when telling the story
     public Message(String username,String message,String messageType,int picture){
         this.username=username;
         this.message=message;
         this.messageType=messageType;
         this.picture=picture;
     }
+    //The method for returning  the username
     public String getUsername(){
         return this.username;
     }
+    //The method for returning the message
     public String getMessage(){
         return this.message;
     }
+    //The method for returning the message type
     public String getMessageType(){
         return this.messageType;
     }
+    //The method for returning the picture
     public int getPicture(){return this.picture;}
 }

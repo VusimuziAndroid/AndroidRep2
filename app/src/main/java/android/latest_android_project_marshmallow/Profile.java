@@ -31,21 +31,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Profile extends AppCompatActivity {
-    //Declaring the variable for the Tab Host to be display on the welcome activity layout
-    //Declaring the variables for the UI controls
     private final int SELECT_PHOTO = 1;
     private static final int RESULT_LOAD_IMAGE=1;
-    //ListView list;
     ListView listView4;
-    //private List<PersonProfile> profile = new ArrayList<PersonProfile>();
-    //private List<ProfileList> profileList = new ArrayList<ProfileList>();
-   // TabHost tabhost;
     TextView tvStory;
     String[] items;
     ArrayList<String> listItems;
-   // ArrayAdapter<String> adapter;
     ArrayAdapter<String> messageAdapter;
-   // MyListAdapterNames adapter2;
     ListView listView;
     private ArrayList<ProfileList> profileList = new ArrayList<ProfileList>();
     private ArrayList<MessageList> messageList = new ArrayList<MessageList>();
@@ -108,7 +100,6 @@ public class Profile extends AppCompatActivity {
         profile.add(new PersonProfile(R.drawable.editor_pic16, R.drawable.editor_pic1, R.drawable.editor_pic2, R.drawable.editor_pic3, R.drawable.editor_pic4));
         profile.add(new PersonProfile(R.drawable.editor_pic15, R.drawable.editor_pic1, R.drawable.editor_pic2, R.drawable.editor_pic3, R.drawable.editor_pic4));
     }
-    //The class for the Array Adapter
     private class MyListAdapter extends ArrayAdapter<PersonProfile> {
         int resource;
         ArrayList<PersonProfile> personProfiles = new ArrayList<PersonProfile>();
@@ -180,7 +171,6 @@ public class Profile extends AppCompatActivity {
         listLikes.add(new ProfileLikes(R.drawable.editor_pic4, R.drawable.rating_good, "4000 likes"));
         listLikes.add(new ProfileLikes(R.drawable.editor_pic5, R.drawable.rating_good, "5000 likes"));
     }
-    //The class for the Array Adapter
     private class MyListAdapterProfileLikes extends ArrayAdapter<ProfileLikes> {
         int resource;
         ArrayList<ProfileLikes> profileLikes = new ArrayList<ProfileLikes>();
@@ -190,6 +180,7 @@ public class Profile extends AppCompatActivity {
             this.resource = resource;
             listLikes = (ArrayList<ProfileLikes>)objects;
         }
+        //The method for getting the view from the inflater layout
         @Override
         public View getView(int position,View convertView,ViewGroup parent){
             View itemView = convertView;
@@ -201,10 +192,6 @@ public class Profile extends AppCompatActivity {
             ProfileLikes profileLikes = listLikes.get(position);
             ImageView imageView3 = (ImageView) itemView.findViewById(R.id.imgIcons3);
             imageView3.setImageResource(profileLikes.getPicture());
-
-           /* ImageView imageView4 = (ImageView) itemView.findViewById(R.id.imgIcons4);
-            imageView4.setImageResource(profileLikes.getIcon());*/
-
             ImageButton imgbtn = (ImageButton) itemView.findViewById(R.id.imgIcons4);
             imgbtn.setImageResource(profileLikes.getIcon());
 
@@ -234,6 +221,7 @@ public class Profile extends AppCompatActivity {
         thirdText.setIndicator("STORY");
         tabhost.addTab(thirdText);
     }
+    //The method for sharing the story
     public void shareStory(){
         AlertDialog.Builder builder7 = new AlertDialog.Builder(Profile.this,R.style.AlertDialogStyle);
         builder7.setCancelable(false);
@@ -290,40 +278,47 @@ public class Profile extends AppCompatActivity {
         builder7.create();
         builder7.show();
     }
+    // The method for inflating the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_share, menu);
         return true;
     }
+    //The method for handling action bar item clicks here
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         switch(id){
             case R.id.home2:
-                //  item.setIcon(R.drawable.ic_show_chart_white_48dp);
                 Intent homeIntent2 = new Intent(Profile.this,Home.class);
                 startActivity(homeIntent2);
+                break;
             case R.id.discover2:
                 Intent discoverIntent = new Intent(Profile.this,Discover.class);
                 startActivity(discoverIntent);
+                break;
             case R.id.action_settings2:
                 Intent profile = new Intent(Profile.this,Profile.class);
                 startActivity(profile);
+                break;
             case R.id.action_settings4:
                 shareStory();
+                break;
             case R.id.profile2:
                 Intent profile2 = new Intent(Profile.this,Profile.class);
                 startActivity(profile2);
+                break;
             case R.id.newstory2:
                 shareStory();
+                break;
+            case R.id.action_settings8:
+                Intent discover = new Intent(Profile.this,Discover.class);
+                startActivity(discover);
             case R.id.exit:
                 Intent end = new Intent(Profile.this,End.class);
                 startActivity(end);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

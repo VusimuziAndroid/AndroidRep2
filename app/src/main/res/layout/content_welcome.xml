@@ -92,7 +92,7 @@
 
                             <ImageButton
                                 android:layout_width="420dp"
-                                android:layout_height="100dp"
+                                android:layout_height="105dp"
                                 app:layout_widthPercent="110%"
                                 app:layout_heightPercent="200%"
                                 android:id="@+id/imgFeatured"
@@ -104,7 +104,7 @@
 
                             <ImageButton
                                 android:layout_width="420dp"
-                                android:layout_height="100dp"
+                                android:layout_height="105dp"
                                 app:layout_widthPercent="110%"
                                 app:layout_heightPercent="200%"
                                 android:id="@+id/imgStellerVerse"
@@ -116,7 +116,7 @@
 
                             <ImageButton
                                 android:layout_width="420dp"
-                                android:layout_height="100dp"
+                                android:layout_height="105dp"
                                 app:layout_heightPercent="200%"
                                 app:layout_widthPercent="110%"
                                 android:id="@+id/imgBonAppetite"
@@ -128,8 +128,8 @@
 
                             <ImageButton
                                 android:layout_width="420dp"
-                                android:layout_height="100dp"
-                                app:layout_heightPercent="200%"
+                                android:layout_height="90dp"
+                                app:layout_heightPercent="160%"
                                 app:layout_widthPercent="110%"
                                 android:id="@+id/imgOutdoors"
                                 android:background="@drawable/iconoutdoors"
@@ -147,7 +147,7 @@
                                       app:layout_marginTopPercent="40%"
                                       app:layout_marginLeftPercent="50%"
                                       app:layout_marginStartPercent="0%"/> -->
-                            <ImageButton
+                          <!--  <ImageButton
                                 android:layout_width="420dp"
                                 android:layout_height="100dp"
                                 app:layout_heightPercent="200%"
@@ -156,7 +156,7 @@
                                 android:background="@drawable/places"
                                 app:layout_marginTopPercent="40%"
                                 app:layout_marginLeftPercent="50%"
-                                app:layout_marginStartPercent="50%"/>
+                                app:layout_marginStartPercent="50%"/> -->
 
                         </LinearLayout>
 

@@ -15,7 +15,7 @@
         <EditText
             android:id="@+id/etStoryLine"
             android:inputType="text"
-            android:layout_width="wrap_content"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             app:layout_marginTopPercent="35%"
             android:textColor="#1A1F35"

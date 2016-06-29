@@ -1,41 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical" android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    app:layout_widthPercent="50%"
-    app:layout_heightPercent="50%">
+    android:orientation="horizontal" android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <!-- The Layout for inflating the list view with the images from the array adapter -->
 
-    <android.support.percent.PercentRelativeLayout android:orientation="vertical"
+    <android.support.percent.PercentRelativeLayout  android:orientation="horizontal"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content">
         <ImageView
-            android:id="@+id/imgIcons3"
+            android:id="@+id/imgIcons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_widthPercent="50%"
             app:layout_heightPercent="50%"
-            app:layout_marginLeftPercent="-5%"
-            android:visibility="visible"
-            />
+            android:paddingLeft="-50dp"
+            app:layout_marginLeftPercent="-25%"
+            android:visibility="visible" />
 
-        <ImageView
-            android:id="@+id/imgIcons4"
+       <!-- <ImageView
+            android:id="@+id/imgIcons2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_widthPercent="50%"
             app:layout_heightPercent="50%"
-            app:layout_marginLeftPercent="0%"
+            android:paddingLeft="-100dp"
+            app:layout_marginLeftPercent="-20%"
             android:visibility="visible"
-
             android:layout_alignParentTop="true"
-            android:layout_toEndOf="@+id/imgIcons3"
-            />
-
-
+            android:layout_toEndOf="@+id/imgIcons" /> -->
     </android.support.percent.PercentRelativeLayout>
+
 
 
 </ScrollView>

@@ -27,12 +27,14 @@ import org.xmlpull.v1.XmlPullParserException;
 import java.io.IOException;
 
 public class WelcomeActivity extends AppCompatActivity {
-    TabHost tabhost; //Declaring the variable for the Tab Host to be display on the welcome activity layout
+    TabHost tabhost;
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     User user;
     SQLiteDatabase db;
     Datasource datasource;
+    SharedPreferences pref2;
+    private SharedPreferences.Editor editor2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,12 +50,12 @@ public class WelcomeActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        //Calling the method for displaying the Tab Host on the welcome screen
         displayTab();
         datasource = new Datasource(this);
     }
-    //The class for handling the validations on the login screen
+
     private class UserValidations {
+        //The method for adding new user to the database
         public void addNewUser(){
             AlertDialog.Builder builder7 = new AlertDialog.Builder(WelcomeActivity.this,R.style.AlertDialogStyle);
             builder7.setCancelable(true);
@@ -91,7 +93,7 @@ public class WelcomeActivity extends AppCompatActivity {
                                         String lastname = cursor.getString(2);
                                         String pWord = cursor.getString(3);
                                         String cpWord = cursor.getString(4);
-                                        Toast.makeText(WelcomeActivity.this, "username " + uName + " password " + pWord, Toast.LENGTH_SHORT).show();
+                                        //Validating the values fropm the edit texts before registration
                                         if (etUsername1.getText().toString().equals("")) {
                                             Toast.makeText(WelcomeActivity.this, "Please supply your username", Toast.LENGTH_SHORT).show();
                                         } else if (etname1.getText().toString().equals("")) {
@@ -106,18 +108,16 @@ public class WelcomeActivity extends AppCompatActivity {
                                             user = new User(userName, firstName, lastName, passWord, confirmPassword);
                                             pref = getSharedPreferences("UsersPref", Home.MODE_PRIVATE);
                                             editor = pref.edit();
-                                            Toast.makeText(WelcomeActivity.this, "Name " + user.getName() + "Surname " + user.getSurname() + "Username " + user.getUsername() + "Password " + user.getPassword() + "Confirm Password " + user.getConfirmPassword(), Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(WelcomeActivity.this, " Loading...", Toast.LENGTH_SHORT).show();
                                             editor.putString("Name", user.getName());
                                             editor.putString("Surname", user.getSurname());
                                             editor.putString("Username", user.getUsername());
                                             editor.putString("Password", user.getPassword());
                                             editor.putString("ConfirmPassword", user.getConfirmPassword());
-                                            Toast.makeText(WelcomeActivity.this, "Successful", Toast.LENGTH_SHORT).show();
                                             editor.commit();
                                             datasource.insertUsers(user);
                                             Intent home = new Intent(WelcomeActivity.this, Home.class);
                                             startActivity(home);
-
                                         }
                                     }
                                 }
@@ -139,13 +139,14 @@ public class WelcomeActivity extends AppCompatActivity {
             final EditText etNewStory = new EditText(WelcomeActivity.this);
             AlertDialog.Builder builder6 = new AlertDialog.Builder(WelcomeActivity.this,R.style.AlertDialogStyle);
             builder6.setCancelable(false);
-            final View  inflater =getLayoutInflater().inflate(R.layout.dialog_signin,null);
+            final View  inflater =getLayoutInflater().inflate(R.layout.dialog_signin, null);
             builder6.setView(inflater)
                     .setPositiveButton("SIGN IN", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int id) {
                             EditText etUsername1 = (EditText) inflater.findViewById(R.id.etusername1);
                             EditText etPassword1 = (EditText) inflater.findViewById(R.id.etpassword1);
+                            String uuName=etUsername1.getText().toString();
                             pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
                             editor = pref.edit();
                             String name = pref.getString("Name", null);
@@ -156,7 +157,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
                             Context context = null;
                             db = openOrCreateDatabase("UsersDB5.db", MODE_PRIVATE, null);
-                            Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users", null);
+                            Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users WHERE Username='"+uuName+"' ", null);
                             String query = "SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users";
                             while (cursor.moveToNext()) {
                                 String uName = cursor.getString(0);
@@ -164,17 +165,23 @@ public class WelcomeActivity extends AppCompatActivity {
                                 String lastname = cursor.getString(2);
                                 String pWord = cursor.getString(3);
                                 String cpWord = cursor.getString(4);
-                                Toast.makeText(WelcomeActivity.this, "username " + uName + " password " + pWord, Toast.LENGTH_SHORT).show();
                                 if (etUsername1.getText().toString().equals("")) {
-                                    Toast.makeText(WelcomeActivity.this, "Please supply your username", Toast.LENGTH_SHORT).show();
+                                     Toast.makeText(WelcomeActivity.this, "Please supply your username", Toast.LENGTH_SHORT).show();
                                 } else if (etPassword1.getText().toString().equals("")) {
-                                    Toast.makeText(WelcomeActivity.this, "Please supply your password", Toast.LENGTH_SHORT).show();
-                                } else
-                                {
-                                   if (uName.equals(etUsername1.getText().toString()) && pWord.equals(etPassword1.getText().toString())) {
-                                        Intent home = new Intent(WelcomeActivity.this, Home.class);
-                                        startActivity(home);
-                                    } else {
+                                     Toast.makeText(WelcomeActivity.this, "Please supply your password", Toast.LENGTH_SHORT).show();
+                                } else {
+
+                                       if (uName.equals(etUsername1.getText().toString()) && pWord.equals(etPassword1.getText().toString())) {
+                                           pref2 = getSharedPreferences("LoggedInUserPref", Home.MODE_PRIVATE);
+                                           editor2 = pref2.edit();
+                                           String messageType2 = "TEXT";
+                                           editor2.putString("Username", uName);
+                                           editor2.putString("Password", pWord);
+                                           editor2.commit();
+                                           Toast.makeText(WelcomeActivity.this,"Loading...", Toast.LENGTH_SHORT).show();
+                                           Intent home = new Intent(WelcomeActivity.this, Home.class);
+                                           startActivity(home);
+                                   } else {
                                         Toast.makeText(WelcomeActivity.this, "The information supplied does n't exists.", Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -205,20 +212,16 @@ public class WelcomeActivity extends AppCompatActivity {
         secondText.setIndicator("COLLECTIONS");
         tabhost.addTab(secondText);
     }
+    // The method for Inflating the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflater = getMenuInflater();
         getMenuInflater().inflate(R.menu.menu_welcome, menu);
         return true;
     }
-    //The method for setting the action to the icon
-    public void setActionIcon(MenuItem menuItem){
-        menuItem.setIcon(R.drawable.menu2);
-    }
+    //The method for handling action bar item clicks.
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here.
         UserValidations userValidations = new UserValidations();
         int id = item.getItemId();
         switch(id){

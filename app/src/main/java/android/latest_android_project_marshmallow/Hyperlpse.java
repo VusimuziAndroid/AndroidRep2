@@ -28,23 +28,17 @@ public class Hyperlpse extends AppCompatActivity {
         });
         splashScreen();
     }
-
     //The onclick event for redirecting to the next screen
     public void onClick(View view){
-        //The Intent for redirecting to another activity
         Intent endIntent = new Intent(Hyperlpse.this,End.class);
         startActivity(endIntent);
     }
     //The method for displaying the splash screen for three seconds
     public void splashScreen(){
-        //  final Animation animateRotate = AnimationUtils.loadAnimation(this, R.anim.rotate);
-        //The Thread for making the screen to display for three seconds
         Thread myThread = new Thread(){
             @Override
             public void run(){
-
                 try {
-
                     sleep(3000);
                     //       imgIcon1.startAnimation(animateRotate);
                     Intent startMainScreen = new Intent(Hyperlpse.this,WelcomeActivity.class);
@@ -54,12 +48,8 @@ public class Hyperlpse extends AppCompatActivity {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
         };
-
         myThread.start();
-
     }
-
 }

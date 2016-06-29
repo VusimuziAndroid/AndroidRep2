@@ -11,10 +11,7 @@ public class PersonProfile {
     int picture3;
     int picture4;
     int picture5;
-    //The constructor for setting the values
     public PersonProfile(int picture,int picture2,int picture3,int picture4,int picture5){
-        /*this.name=name;
-        this.surname=surname;*/
         this.picture=picture;
         this.picture2=picture2;
         this.picture3=picture3;
@@ -36,7 +33,6 @@ public class PersonProfile {
     public int getPicture2(){
         return this.picture2;
     }
-
     public int getPicture3(){
         return this.picture3;
     }

@@ -61,7 +61,6 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
 public class Home extends AppCompatActivity {
-    //Declaring the variables for the UI controls
     private final int SELECT_PHOTO = 1;
     private static final int RESULT_LOAD_IMAGE=1;
     public static final String UPLOAD_URL = "http://localhost/LatestAndroidApp/phpfiles/SavePicture.php";
@@ -72,7 +71,6 @@ public class Home extends AppCompatActivity {
     ListView lsDisplayPics;
     private List<PersonProfile> profile = new ArrayList<PersonProfile>();
     private List<UploadedPicture> updpics = new ArrayList<UploadedPicture>();
-    //private List<ProfileList> profileList = new ArrayList<ProfileList>();
     TabHost tabhost;
     TextView tvStory;
     String[] items;
@@ -113,21 +111,16 @@ public class Home extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-     //   tvStory = (TextView) findViewById(R.id.tvMessage);
         imageView = (ImageView) findViewById(R.id.imgDisplay);
-
         displayTab();
         datasource = new Datasource(this);
     }
     //The method for populating the list view
     public void populateProfileList(){
-       // profile.add(new PersonProfile(R.drawable.pro_pic1, R.drawable.pro_pic2, R.drawable.pro_pic3, R.drawable.pro_pic4, R.drawable.pro_pic5));
         profile.add(new PersonProfile(R.drawable.pro_pic6, R.drawable.pro_pic7, R.drawable.pro_pic8, R.drawable.pro_pic9, R.drawable.pro_pic10));
         profile.add(new PersonProfile(R.drawable.pro_pic11, R.drawable.pro_pic12, R.drawable.pro_pic13, R.drawable.pro_pic14, R.drawable.pro_pic15));
         profile.add(new PersonProfile(R.drawable.pro_pic16, R.drawable.pro_pic17, R.drawable.pro_pic18, R.drawable.pro_pic19, R.drawable.pro_pic20));
-      //  profile.add(new PersonProfile(R.drawable.editor_pic15, R.drawable.editor_pic1, R.drawable.editor_pic2, R.drawable.editor_pic3, R.drawable.editor_pic4));
     }
-    //The class for the Array Adapter
     private class MyListAdapter extends ArrayAdapter<PersonProfile> {
         int resource;
         ArrayList<PersonProfile> personProfiles = new ArrayList<PersonProfile>();
@@ -155,23 +148,13 @@ public class Home extends AppCompatActivity {
     }
     //The method for populating the list view
     public void populateMessages(){
-        // profile.add(new PersonProfile(R.drawable.pro_pic1, R.drawable.pro_pic2, R.drawable.pro_pic3, R.drawable.pro_pic4, R.drawable.pro_pic5));
         pref = getSharedPreferences("StoryLinesPref", MODE_PRIVATE);
         editor = pref.edit();
         String username2 = pref.getString("Username", null);
         String message = pref.getString("Message", null);
         String messagetype = pref.getString("MessageType", null);
-       /* String password = pref.getString("Password", null);
-        String confirmpassword = pref.getString("ConfirmPassword", null);*/
-
-       /* messageList.add(new MessageList(R.drawable.pro_pic1,username2,message));
-        messageList.add(new MessageList(R.drawable.pro_pic2,username2,message));
-        messageList.add(new MessageList(R.drawable.pro_pic3, username2, message));
-        messageList.add(new MessageList(R.drawable.pro_pic4, username2, message));
-        messageList.add(new MessageList(R.drawable.pro_pic3,username2,message));*/
-        //  profile.add(new PersonProfile(R.drawable.editor_pic15, R.drawable.editor_pic1, R.drawable.editor_pic2, R.drawable.editor_pic3, R.drawable.editor_pic4));
+        messageList.add(new MessageList(username2,message,messagetype,R.drawable.pro_pic2));
     }
-    //The class for the Array Adapter
     private class MyListMessageAdapter extends ArrayAdapter<MessageList> {
         int resource;
         ArrayList<PersonProfile> messageLists = new ArrayList<PersonProfile>();
@@ -189,7 +172,6 @@ public class Home extends AppCompatActivity {
             }
             MessageList messages = messageList.get(position);
             ImageView imgPicture = (ImageView) itemView.findViewById(R.id.imgIcons6);
-         //   imgPicture.setImageResource(messages.getProfilePicture());
 
             TextView tvMessage = (TextView) itemView.findViewById(R.id.tvMessage);
             tvMessage.setText(messages.getMessage());
@@ -199,11 +181,7 @@ public class Home extends AppCompatActivity {
     }
     //The method for populating the list view
     public void populatePictures(Bitmap bmp){
-        // profile.add(new PersonProfile(R.drawable.pro_pic1, R.drawable.pro_pic2, R.drawable.pro_pic3, R.drawable.pro_pic4, R.drawable.pro_pic5));
         uploadedPicture.add(new UploadedPicture(bmp));
-       /* profile.add(new PersonProfile(R.drawable.pro_pic11, R.drawable.pro_pic12, R.drawable.pro_pic13, R.drawable.pro_pic14, R.drawable.pro_pic15));
-        profile.add(new PersonProfile(R.drawable.pro_pic16, R.drawable.pro_pic17, R.drawable.pro_pic18, R.drawable.pro_pic19, R.drawable.pro_pic20));*/
-        //  profile.add(new PersonProfile(R.drawable.editor_pic15, R.drawable.editor_pic1, R.drawable.editor_pic2, R.drawable.editor_pic3, R.drawable.editor_pic4));
     }
     //The class for the Array Adapter
     private class MyListAdapterUploadedPicture extends ArrayAdapter<UploadedPicture> {
@@ -224,9 +202,6 @@ public class Home extends AppCompatActivity {
             UploadedPicture pics = uploadedPic.get(position);
             ImageView imageView = (ImageView) itemView.findViewById(R.id.imgDisplay);
             imageView.setImageBitmap(pics.getPicture());
-
-           /* ImageView imageView2 = (ImageView) itemView.findViewById(R.id.imgIcons2);
-            imageView2.setImageResource(persons.getPicture2());*/
 
             return itemView;
         }
@@ -326,6 +301,7 @@ public class Home extends AppCompatActivity {
         }
     }
     private class DatabaseOperations{
+        //The method for adding the new message on the sqlite database
         public void addNewMessage(Datasource datasource,Message message){
             datasource.insertMessage(message);
         }
@@ -342,47 +318,36 @@ public class Home extends AppCompatActivity {
                                     String messageType = "Text";
                                     int pic = R.drawable.editor_pic1;
                                     String storyLine = etStoryLine.getText().toString();
-                                    pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
-                                    editor = pref.edit();
-                                    String name = pref.getString("Name", null);
-                                    String surname = pref.getString("Surname", null);
-                                    String username = pref.getString("Username", null);
-                                    String password = pref.getString("Password", null);
-                                    String confirmpassword = pref.getString("ConfirmPassword", null);
-                                    Toast.makeText(Home.this, "Story Shared", Toast.LENGTH_SHORT).show();
+
                                     Context context = null;
                                     db = openOrCreateDatabase("UsersDB5.db", MODE_PRIVATE, null);
                                     Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users", null);
-                                    message = new Message(username, storyLine, messageType, pic);
-                                    datasource.insertMessage(message);
-                                    pref = getSharedPreferences("UsersPref", Home.MODE_PRIVATE);
+
+                                    pref = getSharedPreferences("LoggedInUserPref", MODE_PRIVATE);
                                     editor = pref.edit();
-                                    Toast.makeText(Home.this, "Name " + message.username + "Surname " + message.getMessage() + "Username " + message.getMessageType() + "Password " + message.getPicture(), Toast.LENGTH_SHORT).show();
+                                    String username5 = pref.getString("Username", null);
+                                    String password5 = pref.getString("Password", null);
+
+                                    message = new Message(username5, storyLine, messageType, pic);
+                                    Toast.makeText(Home.this,"Loading...", Toast.LENGTH_SHORT).show();
+                                    datasource.insertMessage(message);
+
                                     pref2 = getSharedPreferences("StoryLinesPref", Home.MODE_PRIVATE);
                                     editor2 = pref2.edit();
                                     String messageType2 = "TEXT";
-                                    Toast.makeText(Home.this, "Name " + message.getUsername() + "Message" + etStoryLine.getText().toString() + "MessageType" + messageType2, Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(Home.this,"Story Shared", Toast.LENGTH_SHORT).show();
                                     editor2.putString("Username", message.getUsername());
                                     editor2.putString("Message", etStoryLine.getText().toString());
                                     editor2.putString("MessageType", messageType2);
                                     editor2.commit();
-                                    Intent messages = new Intent(Home.this, ViewMessages.class);
-                                    startActivity(messages);
                                 }
                             }
                     )
                     .setNegativeButton("PICTURE", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-                                  /*  Toast.makeText(getApplicationContext(), "Share story", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent();
-                                    intent.setType("image/*");
-                                    intent.setAction(Intent.ACTION_GET_CONTENT);
-                                    startActivityForResult(Intent.createChooser(intent,
-                                            "Selected file to upload"), RESULT_LOAD_IMAGE);*/
                                     Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                                     startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
-                                    //uploadImage();
                                 }
                             }
                     );
@@ -444,7 +409,6 @@ public class Home extends AppCompatActivity {
                     loading.dismiss();
                     Toast.makeText(getApplicationContext(),s,Toast.LENGTH_LONG).show();
                 }
-
                 @Override
                 protected String doInBackground(Bitmap... params){
                     Bitmap bitmap = params[0];
@@ -471,29 +435,14 @@ public class Home extends AppCompatActivity {
             try{
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),filePath);
                 imageView.setImageBitmap(bitmap);
-              //  dataOps.shareStory();
-
                 Bitmap image = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
                 imageView.setImageBitmap(image);
 
                 Toast.makeText(getApplicationContext(), "Picture Uploaded Successfully", Toast.LENGTH_SHORT).show();
-               /*Intent home = new Intent(Home.this,Home.class);
-                startActivity(home);*/
             }
             catch(Exception e){
                 e.printStackTrace();
             }
-          /*  final ListView list3 = new ListView(Home.this);
-            AlertDialog.Builder builder5 = new AlertDialog.Builder(Home.this,R.style.AlertDialogStyle);
-            builder5.setTitle("PROFILE PICTURE");
-            builder5.setCancelable(false);
-            populatePictures(bitmap);
-            pictures = new MyListAdapterUploadedPicture(getApplicationContext(),R.layout.list_uploaded_picture, updpics);
-            lsDisplayPics = (ListView) findViewById(R.id.lsDisplayPicture);
-            lsDisplayPics.setAdapter(pictures);
-            builder5.setView(lsDisplayPics);
-            AlertDialog alertDialog5 = builder5.create();
-            alertDialog5.show();*/
         }
     }
     // The method for Inflating the menu; this adds items to the action bar if it is present.
@@ -522,17 +471,6 @@ public class Home extends AppCompatActivity {
         searchView.setOnQueryTextListener(queryTextListener);
         return true;
     }
-    @Override
-    protected void onNewIntent(Intent intent){
-        if(ContactsContract.Intents.SEARCH_SUGGESTION_CLICKED.equals(intent.getAction())){
-            String displayName ="John";
-            Toast.makeText(Home.this,"Name: "+displayName,Toast.LENGTH_SHORT).show();
-        }
-        else if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            Toast.makeText(Home.this,"Search for : "+query,Toast.LENGTH_SHORT).show();
-        }
-    }
     // The method for handling action bar item clicks here
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -542,11 +480,12 @@ public class Home extends AppCompatActivity {
             case R.id.home2:
                 Intent homeIntent2 = new Intent(Home.this,Home.class);
                 startActivity(homeIntent2);
+                break;
             case R.id.discover2:
                 Intent discoverIntent = new Intent(Home.this,Discover.class);
                 startActivity(discoverIntent);
+                break;
             case R.id.profile2:
-               // databaseOperations.viewProfiles();
                 Intent profile = new Intent(Home.this,Profile.class);
                 startActivity(profile);
                 break;
@@ -562,8 +501,8 @@ public class Home extends AppCompatActivity {
                 startActivity(profile2);
                 break;
             case R.id.action_settings8:
-                Intent messages = new Intent(Home.this,ViewMessages.class);
-                startActivity(messages);
+                Intent discover = new Intent(Home.this,ViewMessages.class);
+                startActivity(discover);
                 break;
             case R.id.action_settings2:
                 Intent profile3 = new Intent(Home.this,Profile.class);

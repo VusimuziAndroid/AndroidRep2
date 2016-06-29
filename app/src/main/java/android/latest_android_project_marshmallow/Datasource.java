@@ -57,6 +57,7 @@ public class Datasource extends SQLiteOpenHelper {
         db.insert(databaseValues.TABLE_NAME, null, values);
         db.close();
     }
+    //The method for inserting values to the sqlite database
     public void insertMessage(Message message){
         Tag Tag=null;
         db = this.getWritableDatabase();
@@ -71,6 +72,7 @@ public class Datasource extends SQLiteOpenHelper {
         db.insert(databaseValues.TABLE_NAME2, null, values);
         db.close();
     }
+    //The method for getting images from the sqlite database
     public void getImage(){
         Cursor c = db.rawQuery("SELECT * FROM Stories",null);
         if(c.moveToNext()){
@@ -78,6 +80,7 @@ public class Datasource extends SQLiteOpenHelper {
             Bitmap bmp = BitmapFactory.decodeByteArray(image,0,image.length);
         }
 }
+    //The method for updating values to the sqlite database
    public void updateMessage(Message message){
        Tag Tag = null;
        db = this.getWritableDatabase();

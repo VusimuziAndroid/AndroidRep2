@@ -11,6 +11,7 @@ public class UploadedPicture {
     public UploadedPicture(Bitmap bmp){
         this.bmp = bmp;
     }
+    //The method for returning the bitmap picture
     public Bitmap getPicture(){
        return this.bmp;
     }

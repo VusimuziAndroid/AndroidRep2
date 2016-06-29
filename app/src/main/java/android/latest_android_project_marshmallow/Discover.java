@@ -6,8 +6,11 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -32,8 +35,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Discover extends AppCompatActivity {
-
-    //Declaring variables to hold UI Controls
     private static final int RESULT_LOAD_IMAGE=1;
     TabHost tabhost;
     ListView list;
@@ -45,13 +46,17 @@ public class Discover extends AppCompatActivity {
     private ArrayList<PersonProfile> profile = new ArrayList<PersonProfile>();
     private ArrayList<PersonProfile> profile2 = new ArrayList<PersonProfile>();
     GridView grid;
-    SharedPreferences pref;
-    private SharedPreferences.Editor editor;
     private int current_image_index;
     ImageView imgPic;
-    Datasource datasource;
+    Message message;
     SearchView.OnQueryTextListener queryTextListener;
-
+    SharedPreferences pref;
+    private SharedPreferences.Editor editor;
+    SharedPreferences pref2;
+    private SharedPreferences.Editor editor2;
+    Datasource datasource;
+    SQLiteDatabase db;
+    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,8 +72,7 @@ public class Discover extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
-        displayTab();//The method for displaying the
+        displayTab();
         populateProfileList();
         adapter = new MyListAdapter(getApplicationContext(),R.layout.list_single, profile);
         list = (ListView) findViewById(R.id.list);
@@ -121,7 +125,6 @@ public class Discover extends AppCompatActivity {
         profile2.add(new PersonProfile(R.drawable.story_teller17, R.drawable.story_teller18, R.drawable.story_teller19, R.drawable.story_teller20, R.drawable.story_teller1));
         profile2.add(new PersonProfile(R.drawable.story_teller2, R.drawable.story_teller3, R.drawable.story_teller4, R.drawable.story_teller5, R.drawable.story_teller6));
     }
-    //The class for the Array Adapter
     private class MyListAdapter2 extends ArrayAdapter<PersonProfile>{
         int resource;
         ArrayList<PersonProfile> personProfiles2 = new ArrayList<PersonProfile>();
@@ -130,6 +133,7 @@ public class Discover extends AppCompatActivity {
             this.resource = resource;
             personProfiles2 = (ArrayList<PersonProfile>)objects;
         }
+        //The method for getting the view item inflater values from the inflater layout
         @Override
         public View getView(int position,View convertView,ViewGroup parent){
             View itemView = convertView;
@@ -162,7 +166,6 @@ public class Discover extends AppCompatActivity {
         secondText.setIndicator("AUTHORS");
         tabhost.addTab(secondText);
     }
-
     // The method for Inflating the menu; this adds items to the action bar if it is present.
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -189,74 +192,60 @@ public class Discover extends AppCompatActivity {
         searchView.setOnQueryTextListener(queryTextListener);
         return true;
     }
-    @Override
-    protected void onNewIntent(Intent intent){
-        if(ContactsContract.Intents.SEARCH_SUGGESTION_CLICKED.equals(intent.getAction())){
-            String displayName ="John";
-            Toast.makeText(Discover.this,"Name: "+displayName,Toast.LENGTH_SHORT).show();
-        }
-        else if(Intent.ACTION_SEARCH.equals(intent.getAction())){
-            String query = intent.getStringExtra(SearchManager.QUERY);
-            Toast.makeText(Discover.this,"Search for : "+query,Toast.LENGTH_SHORT).show();
-        }
-    }
     private class DatabaseOperations{
-
+       //The method for adding the new message to the sqlite database
         public void addNewMessage(Datasource datasource,Message message){
             datasource.insertMessage(message);
         }
+        //The method for sending the message to the sqlite database and creatin the dialog pop up fragment
         public void shareStory(){
-            //SharedPreferences for saving the story message
-            pref = getSharedPreferences("StoryMessagePref", Home.MODE_PRIVATE);
-            editor = pref.edit();
-            final EditText etNewStory = new EditText(Discover.this);
-            AlertDialog.Builder builder6 = new AlertDialog.Builder(Discover.this,R.style.AlertDialogStyle);
-            builder6.setTitle("ADD NEW STORY");
-            builder6.setCancelable(true);
-            builder6.setMessage("Type your story here or click picture to upload the picture .....");
-            builder6.setView(etNewStory);
-            builder6.setPositiveButton("TEXT",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            String messageType="Text";
-                          //  int picture=R.drawable.pro_pic1;
-                            int blob= R.drawable.pro_pic1;
-                            DatabaseOperations databaseOperations = new DatabaseOperations();
-                            //Saving the story telling message on the shared preferences
-                            pref = getSharedPreferences("UsersPref", MODE_PRIVATE);
-                            editor = pref.edit();
-                            String name = pref.getString("Name", null);
-                            String surname = pref.getString("Surname", null);
-                            String username = pref.getString("Username", null);
-                            String password = pref.getString("Password", null);
-                            String confirmpassword = pref.getString("ConfirmPassword", null);
-                            Message message = new Message(username,etNewStory.getText().toString(),messageType,blob);
-                            databaseOperations.addNewMessage(datasource,message);
-                      //      String pic = Integer.toString(picture);
-                            editor.putString("Username",username);
-                            editor.putString("Message",message.getMessage());
-                            editor.putString("MessageType",message.getMessageType());
-                            editor.putString("Picture", imgPic.toString());
-                            editor.commit();
-                            Toast.makeText(getApplicationContext(), "New story shared as follows :" + etNewStory.getText().toString(), Toast.LENGTH_SHORT).show();
-                            tvStory.setText(etNewStory.getText().toString());
-                        }
-                    });
-            builder6.setNegativeButton("PICTURE",
-                    new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(getApplicationContext(), "Share story", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent();
-                            intent.setType("image/*");
-                            intent.setAction(Intent.ACTION_GET_CONTENT);
-                            startActivityForResult(Intent.createChooser(intent,
-                                    "Selected file to upload"), RESULT_LOAD_IMAGE);
-                        }
-                    });
-            builder6.show();
+            AlertDialog.Builder builder7 = new AlertDialog.Builder(Discover.this,R.style.AlertDialogStyle);
+            builder7.setCancelable(false);
+            final View  inflater =getLayoutInflater().inflate(R.layout.dialog_storyline,null);
+            builder7.setView(inflater)
+                    .setPositiveButton("TEXT", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int id) {
+                                    EditText etStoryLine = (EditText) inflater.findViewById(R.id.etStoryLine);
+                                    String messageType = "Text";
+                                    int pic = R.drawable.editor_pic1;
+                                    String storyLine = etStoryLine.getText().toString();
+
+                                    Context context = null;
+                                    db = openOrCreateDatabase("UsersDB5.db", MODE_PRIVATE, null);
+                                    Cursor cursor = db.rawQuery("SELECT Username,Name,Surname,Password,ConfirmPassword FROM Users", null);
+
+                                    pref = getSharedPreferences("LoggedInUserPref", MODE_PRIVATE);
+                                    editor = pref.edit();
+                                    String username5 = pref.getString("Username", null);
+                                    String password5 = pref.getString("Password", null);
+
+                                    message = new Message(username5, storyLine, messageType, pic);
+                                    datasource.insertMessage(message);
+
+                                    pref2 = getSharedPreferences("StoryLinesPref", Home.MODE_PRIVATE);
+                                    editor2 = pref2.edit();
+                                    String messageType2 = "TEXT";
+                                    Toast.makeText(Discover.this,"Story Shared", Toast.LENGTH_SHORT).show();
+                                    editor2.putString("Username", message.getUsername());
+                                    editor2.putString("Message", etStoryLine.getText().toString());
+                                    editor2.putString("MessageType", messageType2);
+                                    editor2.commit();
+                                }
+                            }
+                    )
+                    .setNegativeButton("PICTURE", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                    startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
+                                }
+                            }
+                    );
+            builder7.create();
+            builder7.show();
         }
+        //The method for returing the profile pictures
         public void viewProfiles()
         {
             final ListView list3 = new ListView(Discover.this);
@@ -281,6 +270,7 @@ public class Discover extends AppCompatActivity {
             case R.id.home2:
                 Intent homeIntent2 = new Intent(Discover.this,Home.class);
                 startActivity(homeIntent2);
+                break;
             case R.id.discover2:
                 Intent discoverIntent = new Intent(Discover.this,Discover.class);
                 startActivity(discoverIntent);

@@ -13,18 +13,12 @@ public class MessageList {
     String message;
     String username;
     String messageType;
-    Blob profilePicture;
-
-    public MessageList(String username,String message,String messageType){
-
+    int profilePicture;
+    public MessageList(String username,String message,String messageType,int profilePicture){
         this.username=username;
         this.message=message;
         this.messageType=messageType;
-       // this.profilePicture = profilePicture;
-        /*Bitmap bitmap = null;
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);*/
-
+        this.profilePicture = profilePicture;
     }
     //The method for returning the messages
     public String getMessage(){
@@ -38,7 +32,7 @@ public class MessageList {
         return this.username;
     }
     //The method for returning the profile picture
-    public Blob getProfilePicture(){
+    public int getProfilePicture(){
         return this.profilePicture;
     }
 }

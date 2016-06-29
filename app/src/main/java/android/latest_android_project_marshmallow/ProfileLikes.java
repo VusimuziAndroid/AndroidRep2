@@ -7,7 +7,6 @@ public class ProfileLikes  {
     int picture;
     int icon;
     String likes;
-
     public ProfileLikes(int picture,int icon,String likes){
         this.picture=picture;
         this.icon=icon;
